@@ -1,0 +1,29 @@
+# Approachable Intelligence
+
+> AI integration and automation for small and medium service businesses. We help owners adopt AI without losing the human quality that made their business work. Tagline: Big Tech Energy. Small Business Soul. Based in Colorado (Denver and the Roaring Fork Valley), working locally and remotely. Founded by Ty and Jordyn.
+
+## What we do
+
+Approachable Intelligence is an AI integration and web development consultancy for service businesses that have outgrown their systems. We automate the busywork your customers never see (data entry, follow-ups, reminders, lead routing) and protect the human moments they feel. We also coach teams so the new tools actually get used.
+
+Our process runs in three phases:
+
+- The Deep Dive (48-hour blueprint): a two-hour audit of your "digital junk drawer" to find lead leakage, manual duct tape, and invisible labor. You get a map of what to delete, automate, and protect.
+- The Build (setup and buy-in): we install the automated architecture and coach the team to adopt it, so the business runs smoother.
+- The Alliance (ongoing support): on-call partners who refine the roadmap as AI evolves.
+
+## Who we help
+
+Small and medium service businesses dealing with operational bottlenecks, scattered data and double-entry, underused software and AI tools, and the worry that automation will make their service feel cold.
+
+## Key pages
+
+- Home: https://approachableintelligence.ai/
+- How it works (services and process): https://approachableintelligence.ai/services
+- About the founders (Ty and Jordyn): https://approachableintelligence.ai/about
+- Resources (guides on AI for service businesses): https://approachableintelligence.ai/resources
+- Contact (start the conversation): https://approachableintelligence.ai/contact
+
+## Contact
+
+Email: info@approachableintelligence.ai

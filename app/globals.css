@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+/*
+  Approachable Intelligence design system.
+  Palette: warm cream base, deep ink text, rust as the one "click me" color,
+  mustard + olive as small playful pops. Edit a hex here and it updates everywhere.
+*/
+
+@theme {
+  /* Base + neutrals */
+  --color-cream: #fefbea;
+  --color-cream-200: #f6efd6;
+  --color-sand: #ece2c4;
+
+  /* Ink (text + dark surfaces) */
+  --color-ink: #2a344d;
+  --color-ink-700: #3a4664;
+  --color-ink-500: #5c6885;
+
+  /* Rust = primary accent (CTAs, links) */
+  --color-rust: #b7410e;
+  --color-rust-600: #9a360b;
+  --color-rust-700: #7e2c09;
+
+  /* Playful pops */
+  --color-mustard: #ffce1b;
+  --color-mustard-300: #ffe07a;
+  --color-olive: #9cbb04;
+  --color-olive-600: #7e9803;
+
+  /* Type */
+  --font-sans: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+
+  /* Rhythm */
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.75rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    /* Dial up the soft, slightly wonky Fraunces personality */
+    font-variation-settings: "opsz" 144, "SOFT" 60, "WONK" 1;
+  }
+
+  /* Visible focus for keyboard users everywhere */
+  :focus-visible {
+    outline: 3px solid var(--color-rust);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-mustard);
+    color: var(--color-ink);
+  }
+}
+
+/*
+  Motion. All of it is CSS only, so the content ships in the HTML for crawlers
+  and still shows up with JavaScript disabled. Reduced-motion users get none of it.
+*/
+
+@keyframes ai-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ai-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) rotate(-4deg);
+  }
+  60% {
+    transform: scale(1.03) rotate(1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ai-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+/* One-time entrance, used for the hero reveal with staggered delays */
+.ai-rise {
+  animation: ai-rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.ai-pop {
+  animation: ai-pop 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.ai-bob {
+  animation: ai-bob 5s ease-in-out infinite;
+}
+
+.ai-delay-1 {
+  animation-delay: 0.08s;
+}
+.ai-delay-2 {
+  animation-delay: 0.18s;
+}
+.ai-delay-3 {
+  animation-delay: 0.3s;
+}
+.ai-delay-4 {
+  animation-delay: 0.44s;
+}
+.ai-delay-5 {
+  animation-delay: 0.6s;
+}
+
+/* Scroll reveal with zero JavaScript. Only browsers that support scroll-driven
+   animations hide-then-reveal; everything else just shows the content normally. */
+@supports (animation-timeline: view()) {
+  .ai-reveal {
+    opacity: 0;
+    animation: ai-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 22%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .ai-rise,
+  .ai-pop,
+  .ai-bob,
+  .ai-reveal {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* A hand-drawn-ish highlight, used to mark a word or two */
+.ai-underline {
+  background-image: linear-gradient(transparent 62%, var(--color-mustard) 62%);
+  background-repeat: no-repeat;
+  padding: 0 0.05em;
+}
+.ai-underline-olive {
+  background-image: linear-gradient(transparent 62%, var(--color-olive) 62%);
+}
