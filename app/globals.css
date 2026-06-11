@@ -33,6 +33,8 @@
   --color-mustard-300: #ffe07a;
   --color-olive: #9cbb04;
   --color-olive-600: #7e9803;
+  /* Chartreuse — bright yellow-green accent, best on deep teal */
+  --color-chartreuse: #c4d600;
 
   /* Type */
   --font-sans: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
@@ -182,4 +184,9 @@
 }
 .ai-underline-olive {
   background-image: linear-gradient(transparent 62%, var(--color-olive) 62%);
+}
+.ai-underline-chartreuse {
+  background-image: linear-gradient(transparent 62%, var(--color-chartreuse) 62%);
+  background-repeat: no-repeat;
+  padding: 0 0.05em;
 }

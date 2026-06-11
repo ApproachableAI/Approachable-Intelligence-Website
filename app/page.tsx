@@ -159,7 +159,9 @@ export default function HomePage() {
               How it works
             </Eyebrow>
             <h2 className="text-3xl text-cream sm:text-4xl">
-              Three phases. One calmer business.
+              Three phases. One{" "}
+              <span className="ai-underline-chartreuse text-cream">calmer</span>{" "}
+              business.
             </h2>
             <p className="mt-5 text-lg text-cream/75">
               We start by finding the leaks, then we build the fix and coach your
@@ -177,7 +179,7 @@ export default function HomePage() {
                   {phase.number}
                 </span>
                 <h3 className="mt-3 text-2xl text-cream">{phase.name}</h3>
-                <p className="text-sm font-semibold uppercase tracking-wide text-olive">
+                <p className="text-sm font-semibold uppercase tracking-wide text-chartreuse">
                   {phase.kicker}
                 </p>
                 <p className="mt-4 text-cream/75">{phase.answer}</p>
