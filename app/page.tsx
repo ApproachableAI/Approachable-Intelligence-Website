@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
 import { phases, painPoints, homeFaqs, founders } from "@/lib/content";
@@ -222,15 +223,18 @@ export default function HomePage() {
 
       {/* Meet the founders */}
       <Section className="bg-cream-200/50">
-        <Container className="grid items-center gap-10 md:grid-cols-[0.9fr_1.1fr]">
-          <div className="ai-reveal flex items-center gap-5">
-            {founders.map((f, i) => (
-              <div key={f.name} className="text-center">
-                <FounderAvatar name={f.name} src={f.photo} size={120} index={i} />
-                <p className="mt-3 font-display text-xl">{f.name}</p>
-                <p className="text-sm text-ink/60">{f.role}</p>
-              </div>
-            ))}
+        <Container className="grid items-center gap-10 md:grid-cols-[0.95fr_1.05fr]">
+          <div className="ai-reveal flex justify-center md:justify-start">
+            <figure className="relative">
+              <div className="absolute inset-0 -z-10 translate-x-3 translate-y-3 rounded-[2.5rem] bg-olive/30" />
+              <Image
+                src="/founders/founders.jpg"
+                alt="Jordyn and Ty, founders of Approachable Intelligence, in the Colorado mountains"
+                width={750}
+                height={1000}
+                className="h-auto w-full max-w-sm rounded-[2.5rem] object-cover ring-1 ring-ink/10"
+              />
+            </figure>
           </div>
           <div className="ai-reveal">
             <Eyebrow>The humans</Eyebrow>
