@@ -39,7 +39,7 @@ export default function HomePage() {
             </p>
             <h1 className="ai-rise ai-delay-1 text-balance text-[2.6rem] leading-[1.02] sm:text-6xl">
               AI for small businesses that{" "}
-              <span className="ai-underline">refuse to feel like robots</span>.
+              <span className="ai-underline-chartreuse">refuse to feel like robots</span>.
             </h1>
             <p className="ai-rise ai-delay-2 mt-6 max-w-xl text-lg text-ink/75 sm:text-xl">
               We help service businesses adopt AI and automation without losing
