@@ -11,20 +11,20 @@ import { cn } from "@/lib/cn";
 const POSES = {
   walking: { src: "/mascot/brain-walking.png", alt: "Friendly cartoon brain walking in checkered sneakers" },
   pointing: { src: "/mascot/brain-pointing.png", alt: "Friendly cartoon brain pointing the way" },
-  leaning: { src: "/mascot/brain-leaning.png", alt: "Friendly cartoon brain leaning casually" },
-  standing: { src: "/mascot/brain-standing.png", alt: "Friendly cartoon brain waving hello" },
+  leaning: { src: "/mascot/brain-leaning.png", alt: "Friendly cartoon brain leaning casually with legs crossed" },
+  standing: { src: "/mascot/brain-standing.png", alt: "Friendly cartoon brain standing with a hand on its hip" },
   sitting: { src: "/mascot/brain-sitting.png", alt: "Friendly cartoon brain relaxing in an armchair with glasses" },
 } as const;
 
 export type Pose = keyof typeof POSES;
 
-// Until every pose art lands, missing ones reuse the walking brain.
+// All five poses are in place. Anything missing would fall back to walking.
 const AVAILABLE: Record<Pose, boolean> = {
   walking: true,
-  pointing: false,
-  leaning: false,
-  standing: false,
-  sitting: false,
+  pointing: true,
+  leaning: true,
+  standing: true,
+  sitting: true,
 };
 
 export function Brain({

@@ -6,7 +6,7 @@ What is in, what is still needed, and exactly where each piece goes.
 
 - [x] Brand palette (cream, ink, rust, mustard, olive) — `app/globals.css`
 - [x] Fonts: Fraunces + Bricolage Grotesque — self-hosted via `next/font`
-- [x] Walking brain mascot — `public/mascot/brain-walking.png`
+- [x] Brain mascot, all five poses — walking, pointing, leaning, standing, sitting (`public/mascot/`)
 - [x] Logo lockup (brain mark + wordmark, built from text)
 - [x] All copy written in brand voice
 - [x] SEO: titles, meta, canonical, OG/Twitter, sitemap, robots, llms.txt, JSON-LD
@@ -18,10 +18,6 @@ What is in, what is still needed, and exactly where each piece goes.
 |------|---------------|-------------------|
 | **Founder photo: Ty** | `public/founders/ty.jpg` | Set `Ty: true` in `components/founder-avatar.tsx` |
 | **Founder photo: Jordyn** | `public/founders/jordyn.jpg` | Set `Jordyn: true` in `components/founder-avatar.tsx` |
-| **Mascot: pointing** | `public/mascot/brain-pointing.png` | Set `pointing: true` in `components/brain.tsx` |
-| **Mascot: leaning** | `public/mascot/brain-leaning.png` | Set `leaning: true` in `components/brain.tsx` |
-| **Mascot: standing/waving** | `public/mascot/brain-standing.png` | Set `standing: true` in `components/brain.tsx` |
-| **Mascot: sitting (armchair, glasses)** | `public/mascot/brain-sitting.png` | Set `sitting: true` in `components/brain.tsx` |
 | **Favicon** | `app/favicon.ico` | Replace the file |
 | **Founder credentials** | `lib/content.ts` (`founders[].credentials`) | Edit the text (currently placeholder) |
 | **Testimonials / client logos** | not yet placed | Send them and we'll add a trust strip near the CTAs |
