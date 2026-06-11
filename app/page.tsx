@@ -86,7 +86,7 @@ export default function HomePage() {
       </section>
 
       {/* The junk drawer */}
-      <Section className="bg-cream-200/50">
+      <Section className="bg-sand/70">
         <Container>
           <div className="ai-reveal max-w-3xl">
             <Eyebrow>The junk drawer</Eyebrow>
@@ -152,7 +152,7 @@ export default function HomePage() {
       </Section>
 
       {/* Three-phase glance */}
-      <Section className="bg-ink text-cream">
+      <Section className="bg-deep text-cream">
         <Container>
           <div className="ai-reveal max-w-2xl">
             <Eyebrow className="text-mustard [&_span]:bg-mustard">
@@ -222,7 +222,7 @@ export default function HomePage() {
       </Section>
 
       {/* Meet the founders */}
-      <Section className="bg-cream-200/50">
+      <Section className="bg-sand/70">
         <Container className="grid items-center gap-10 md:grid-cols-[0.95fr_1.05fr]">
           <div className="ai-reveal flex justify-center md:justify-start">
             <figure className="relative">

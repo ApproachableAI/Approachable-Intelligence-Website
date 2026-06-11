@@ -6,7 +6,7 @@ import { FormLink } from "./cta-button";
 export function SiteFooter() {
   const year = new Date().getFullYear();
   return (
-    <footer className="mt-8 bg-ink text-cream/90">
+    <footer className="mt-8 bg-deep text-cream/90">
       <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-8">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">

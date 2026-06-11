@@ -22,6 +22,12 @@
   --color-rust-600: #9a360b;
   --color-rust-700: #7e2c09;
 
+  /* Deep teal = warm dark surfaces (big bands, footer, CTA). Warmer + more
+     on-brand than flat navy. Text stays ink; only large surfaces use this. */
+  --color-deep: #14474e;
+  --color-deep-700: #0f3a40;
+  --color-teal: #2c7a7e;
+
   /* Playful pops */
   --color-mustard: #ffce1b;
   --color-mustard-300: #ffe07a;

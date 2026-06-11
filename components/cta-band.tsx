@@ -13,7 +13,7 @@ export function CtaBand({
   return (
     <section className="py-16 sm:py-24">
       <Container>
-        <div className="relative overflow-hidden rounded-[2rem] bg-ink px-6 py-14 text-cream sm:px-14">
+        <div className="relative overflow-hidden rounded-[2rem] bg-deep px-6 py-14 text-cream sm:px-14">
           <div className="absolute -right-6 -top-8 h-40 w-40 rounded-full bg-rust/20 blur-2xl" />
           <div className="absolute -bottom-10 left-10 h-32 w-32 rounded-full bg-olive/20 blur-2xl" />
           <div className="relative flex flex-col items-center gap-8 text-center md:flex-row md:items-center md:justify-between md:text-left">
