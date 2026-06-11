@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site.url}/about`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${site.url}/resources`, changeFrequency: "weekly", priority: 0.7 },
     { url: `${site.url}/contact`, changeFrequency: "yearly", priority: 0.6 },
+    { url: `${site.url}/jordyn`, changeFrequency: "monthly", priority: 0.7 },
   ];
 
   const postRoutes: MetadataRoute.Sitemap = posts.map((p) => ({

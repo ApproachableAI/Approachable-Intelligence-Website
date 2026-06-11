@@ -1,0 +1,811 @@
+/*
+  Jordyn Moody profile — scoped editorial styles.
+
+  Every rule is namespaced under .jm so this design system stays fully walled
+  off from the Approachable Intelligence company theme in globals.css. Fonts
+  come from next/font (see layout.tsx) through the --font-* variables.
+
+  This stylesheet ships only in the /jordyn route chunk, so the rule that hides
+  the company header and footer below applies on this page alone.
+*/
+
+/* Hide the company chrome on this route only. The masthead, sticky nav, and
+   colophon below are the profile's own framing. */
+body:has(.jm) {
+  background: #ece6d8;
+}
+body:has(.jm) > header,
+body:has(.jm) > footer {
+  display: none !important;
+}
+
+.jm {
+  --paper: #ece6d8;
+  --paper-2: #e4ddcc;
+  --paper-3: #dcd3bf;
+  --ink: #1a1813;
+  --ink-soft: #4f4a3e;
+  --ink-faint: #7c7565;
+  --green: #2c4636;
+  --green-bright: #3a5d47;
+  --brick: #8f4131;
+  --ochre: #9a7b2c;
+  --rule: #c7bda6;
+  --gold: #e9c98a;
+  --maxw: 1180px;
+
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-size: 18px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+.jm * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Paper grain overlay */
+.jm::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.jm a {
+  color: inherit;
+}
+.jm .sans {
+  font-family: var(--font-archivo), sans-serif;
+}
+.jm .display {
+  font-family: var(--font-caslon), Georgia, serif;
+  font-weight: 400;
+}
+.jm .wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+  z-index: 2;
+}
+.jm .kicker {
+  font-family: var(--font-archivo), sans-serif;
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+/* MASTHEAD */
+.jm .masthead {
+  border-bottom: 1.5px solid var(--ink);
+  position: relative;
+  z-index: 2;
+  background: var(--paper);
+}
+.jm .mast-inner {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  font-family: var(--font-archivo), sans-serif;
+}
+.jm .mast-cell {
+  padding: 13px 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.jm .mast-cell.mid {
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.26em;
+}
+.jm .mast-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brick);
+  display: inline-block;
+}
+@media (max-width: 680px) {
+  .jm .mast-cell.side {
+    display: none;
+  }
+  .jm .mast-inner {
+    justify-content: center;
+  }
+}
+
+/* NAV */
+.jm nav.bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(236, 230, 216, 0.9);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+.jm .bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 54px;
+  font-family: var(--font-archivo), sans-serif;
+}
+.jm .bar-name {
+  font-family: var(--font-caslon), serif;
+  font-size: 1.1rem;
+}
+.jm .bar-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+.jm .bar-links a {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink-soft);
+  transition: color 0.2s;
+}
+.jm .bar-links a:hover {
+  color: var(--brick);
+}
+.jm .bar-cta {
+  color: var(--green) !important;
+  font-weight: 600;
+  border-bottom: 1.5px solid var(--green);
+  padding-bottom: 2px;
+}
+@media (max-width: 720px) {
+  .jm .bar-links a:not(.bar-cta) {
+    display: none;
+  }
+}
+
+/* FEATURE OPENER */
+.jm .feature {
+  padding: 60px 0 30px;
+}
+.jm .feature-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+.jm .feature-tag {
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brick);
+  font-weight: 600;
+}
+.jm .byline {
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.jm h1.headline {
+  font-family: var(--font-caslon), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(3.3rem, 11vw, 8.4rem);
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+  margin: 6px 0 0;
+  font-variation-settings: normal;
+}
+.jm h1 .amp {
+  color: var(--brick);
+}
+.jm .opener-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 0.95fr;
+  gap: 54px;
+  margin-top: 42px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .jm .opener-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+.jm .standfirst {
+  font-size: 1.34rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.jm .standfirst .dropcap {
+  float: left;
+  font-family: var(--font-caslon), serif;
+  color: var(--brick);
+  font-size: 5.4rem;
+  line-height: 0.72;
+  margin: 8px 12px 0 0;
+}
+.jm .opener-meta {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.jm .meta-chip {
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--ink);
+  border-radius: 1px;
+  padding: 7px 12px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.jm .meta-chip:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* Portrait plate */
+.jm .plate {
+  border: 1.5px solid var(--ink);
+  background: var(--paper-2);
+  position: relative;
+}
+.jm .plate-img {
+  aspect-ratio: 4 / 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(150deg, var(--green) 0%, #22382b 100%);
+}
+.jm .plate-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.jm .monogram {
+  font-family: var(--font-caslon), serif;
+  font-size: 6rem;
+  color: var(--paper);
+  letter-spacing: 0.04em;
+  opacity: 0.92;
+}
+.jm .plate-cap {
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: 9px 12px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* SECTION FRAME */
+.jm section {
+  padding: 64px 0;
+  border-top: 1px solid var(--rule);
+  position: relative;
+  z-index: 2;
+}
+.jm .sec-label {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 34px;
+}
+.jm .sec-no {
+  font-family: var(--font-archivo), sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--brick);
+  letter-spacing: 0.05em;
+}
+.jm .sec-title {
+  font-family: var(--font-caslon), serif;
+  font-size: clamp(1.9rem, 4.4vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+  font-variation-settings: normal;
+}
+.jm .sec-lead {
+  max-width: 640px;
+  color: var(--ink-soft);
+  font-size: 1.12rem;
+  margin-top: 8px;
+}
+
+/* CHAPTERS / EXPERIENCE */
+.jm .filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+.jm .filter {
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--ink-faint);
+  padding: 10px 18px 12px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  margin-bottom: -1px;
+}
+.jm .filter:first-child {
+  padding-left: 0;
+}
+.jm .filter:hover {
+  color: var(--ink);
+}
+.jm .filter.active {
+  color: var(--ink);
+  border-color: var(--brick);
+}
+.jm .chapter {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 30px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--rule);
+  transition: opacity 0.4s, transform 0.4s;
+}
+.jm .chapter.hide {
+  display: none;
+}
+.jm .ch-year {
+  font-family: var(--font-caslon), serif;
+  font-size: 1.5rem;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.jm .ch-lens {
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--ink-faint);
+}
+.jm .lens-mark {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+.jm .m-people {
+  background: var(--green);
+}
+.jm .m-ai {
+  background: var(--brick);
+}
+.jm .m-ops {
+  background: var(--ochre);
+}
+.jm .ch-role {
+  font-family: var(--font-caslon), serif;
+  font-size: 1.6rem;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+.jm .ch-org {
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-top: 5px;
+}
+.jm .ch-desc {
+  margin-top: 11px;
+  color: var(--ink-soft);
+  max-width: 680px;
+}
+@media (max-width: 620px) {
+  .jm .chapter {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+/* PULL QUOTE */
+.jm .quote-sec {
+  background: var(--green);
+  color: var(--paper);
+  border-top: 1.5px solid var(--ink);
+}
+.jm .pullquote {
+  font-family: var(--font-newsreader), serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.7rem, 4.6vw, 3rem);
+  line-height: 1.24;
+  max-width: 960px;
+  position: relative;
+}
+.jm .pullquote .qmark {
+  font-family: var(--font-caslon), serif;
+  font-style: normal;
+  font-size: 4rem;
+  line-height: 0;
+  color: rgba(236, 230, 216, 0.5);
+  margin-right: 6px;
+  vertical-align: -0.35em;
+}
+.jm .pullquote em {
+  font-style: normal;
+  color: var(--gold);
+}
+.jm .quote-attr {
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(236, 230, 216, 0.72);
+  margin-top: 26px;
+}
+
+/* FIELD NOTES (values) */
+.jm .notes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 56px;
+}
+@media (max-width: 760px) {
+  .jm .notes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.jm .note {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 14px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.jm .note-no {
+  font-family: var(--font-archivo), sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--brick);
+  padding-top: 5px;
+}
+.jm .note h3 {
+  font-family: var(--font-caslon), serif;
+  font-weight: 400;
+  font-size: 1.32rem;
+  line-height: 1.15;
+  margin-bottom: 6px;
+  font-variation-settings: normal;
+}
+.jm .note p {
+  color: var(--ink-soft);
+  font-size: 0.99rem;
+}
+
+/* INDEX OF SKILLS */
+.jm .index-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+@media (max-width: 820px) {
+  .jm .index-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+.jm .index-col h3 {
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brick);
+  padding-bottom: 10px;
+  margin-bottom: 6px;
+  border-bottom: 1.5px solid var(--ink);
+  font-variation-settings: normal;
+}
+.jm .index-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 9px 0;
+  border-bottom: 1px dotted var(--rule);
+  font-size: 1rem;
+}
+.jm .index-item .lead-dots {
+  flex: 1;
+  border-bottom: 1px dotted var(--ink-faint);
+  margin: 0 6px;
+  transform: translateY(-3px);
+  opacity: 0.5;
+}
+.jm .index-item .pg {
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+}
+
+/* PLATES (work) */
+.jm .plates {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 820px) {
+  .jm .plates {
+    grid-template-columns: 1fr;
+  }
+}
+.jm .work-plate {
+  display: block;
+  text-decoration: none;
+  border: 1.5px solid var(--ink);
+  background: var(--paper-2);
+  transition: transform 0.22s, box-shadow 0.22s;
+}
+.jm .work-plate:hover {
+  transform: translateY(-4px);
+  box-shadow: 7px 9px 0 var(--green);
+}
+.jm .wp-head {
+  padding: 18px 20px 0;
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brick);
+}
+.jm .wp-body {
+  padding: 8px 20px 20px;
+}
+.jm .wp-body h3 {
+  font-family: var(--font-caslon), serif;
+  font-size: 1.4rem;
+  line-height: 1.1;
+  margin: 6px 0 8px;
+  font-weight: 400;
+  font-variation-settings: normal;
+}
+.jm .wp-body p {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+.jm .wp-go {
+  margin-top: 16px;
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* Q&A */
+.jm .qa {
+  border-top: 1px solid var(--rule);
+}
+.jm .qa-item {
+  padding: 26px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.jm .qa-q {
+  font-family: var(--font-caslon), serif;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-variation-settings: normal;
+}
+.jm .qa-q::before {
+  content: "Q.";
+  font-family: var(--font-archivo), sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--brick);
+  margin-right: 12px;
+  letter-spacing: 0.04em;
+}
+.jm .qa-a {
+  color: var(--ink-soft);
+  max-width: 760px;
+  padding-left: 30px;
+  position: relative;
+}
+.jm .qa-a::before {
+  content: "A.";
+  font-family: var(--font-archivo), sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--green);
+  position: absolute;
+  left: 0;
+  top: 1px;
+  letter-spacing: 0.04em;
+}
+
+/* VIDEO */
+.jm .film {
+  border: 1.5px solid var(--ink);
+  background: #1d1a14;
+  aspect-ratio: 16 / 9;
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.jm .film iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.jm .film-ph {
+  text-align: center;
+  color: var(--paper);
+  font-family: var(--font-archivo), sans-serif;
+  padding: 28px;
+}
+.jm .film-ph .lbl {
+  font-size: 0.74rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.jm .film-cap {
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 12px;
+}
+
+/* COLOPHON / CONTACT */
+.jm .colophon {
+  background: var(--ink);
+  color: var(--paper);
+  border-top: 1.5px solid var(--ink);
+}
+.jm .colophon .sec-no {
+  color: var(--gold);
+}
+.jm .colophon .sec-title {
+  color: var(--paper);
+}
+.jm .close-line {
+  font-family: var(--font-caslon), serif;
+  font-size: clamp(2rem, 5.5vw, 3.6rem);
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  max-width: 820px;
+  font-weight: 400;
+  font-variation-settings: normal;
+}
+.jm .close-line .amp {
+  color: var(--gold);
+}
+.jm .contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+.jm .btn {
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 24px;
+  transition: all 0.2s;
+}
+.jm .btn-fill {
+  background: var(--gold);
+  color: var(--ink);
+  font-weight: 600;
+}
+.jm .btn-fill:hover {
+  background: #f0d8a4;
+}
+.jm .btn-out {
+  border: 1px solid rgba(236, 230, 216, 0.4);
+  color: var(--paper);
+}
+.jm .btn-out:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.jm .colo-meta {
+  margin-top: 60px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(236, 230, 216, 0.18);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(236, 230, 216, 0.6);
+}
+
+/* Focus + selection, scoped to the profile */
+.jm :focus-visible {
+  outline: 2px solid var(--brick);
+  outline-offset: 3px;
+}
+.jm ::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/*
+  Scroll reveal with zero JavaScript, matching the company site's approach.
+  Only browsers that support scroll-driven animations hide-then-reveal; every
+  other browser, and anyone with JS off, simply sees the content.
+*/
+@keyframes jm-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@supports (animation-timeline: view()) {
+  .jm .reveal {
+    opacity: 0;
+    animation: jm-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 18%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jm {
+    scroll-behavior: auto;
+  }
+  .jm .reveal {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
