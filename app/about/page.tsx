@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { buildMetadata } from "@/lib/seo";
 import { founders } from "@/lib/content";
 import { site } from "@/lib/site";
 import { Container, Section, Eyebrow } from "@/components/ui";
 import { FounderAvatar } from "@/components/founder-avatar";
-import { Brain } from "@/components/brain";
 import { CtaBand } from "@/components/cta-band";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbSchema } from "@/lib/schema";
@@ -48,12 +48,20 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="flex justify-center">
-            <div className="relative">
+            <figure className="relative">
               <div className="absolute inset-0 -z-10 translate-x-3 translate-y-3 rounded-[2.5rem] bg-mustard/40" />
-              <div className="rounded-[2.5rem] bg-cream-200 p-8 ring-1 ring-ink/10">
-                <Brain pose="sitting" size={260} bob />
-              </div>
-            </div>
+              <Image
+                src="/founders/founders.jpg"
+                alt="Jordyn and Ty, founders of Approachable Intelligence, sitting on a ridge in the Colorado mountains"
+                width={750}
+                height={1000}
+                priority
+                className="h-auto w-full max-w-sm rounded-[2.5rem] object-cover ring-1 ring-ink/10"
+              />
+              <figcaption className="mt-3 text-center text-sm text-ink/55">
+                Jordyn and Ty, getting some air away from the screens.
+              </figcaption>
+            </figure>
           </div>
         </Container>
       </Section>

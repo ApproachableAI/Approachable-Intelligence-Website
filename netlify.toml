@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+# Netlify auto-installs this when it detects Next.js; listing it makes the
+# build deterministic. It handles SSR, the image CDN, and the metadata routes.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

@@ -12,13 +12,13 @@ What is in, what is still needed, and exactly where each piece goes.
 - [x] SEO: titles, meta, canonical, OG/Twitter, sitemap, robots, llms.txt, JSON-LD
 - [x] One starter blog post
 
+- [x] Founder photos — Ty and Jordyn avatars plus the full "meet the founders" shot
+- [x] Favicon + apple touch icon from the brain mascot
+
 ## Still to provide
 
 | Item | Where it goes | How to turn it on |
 |------|---------------|-------------------|
-| **Founder photo: Ty** | `public/founders/ty.jpg` | Set `Ty: true` in `components/founder-avatar.tsx` |
-| **Founder photo: Jordyn** | `public/founders/jordyn.jpg` | Set `Jordyn: true` in `components/founder-avatar.tsx` |
-| **Favicon** | `app/favicon.ico` | Replace the file |
 | **Founder credentials** | `lib/content.ts` (`founders[].credentials`) | Edit the text (currently placeholder) |
 | **Testimonials / client logos** | not yet placed | Send them and we'll add a trust strip near the CTAs |
 | **Social profile URLs** | `lib/site.ts` (`sameAs`) | Add URLs to feed Organization schema |
