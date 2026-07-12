@@ -46,6 +46,25 @@ export default function ResourcesPage() {
 
       <Section className="pt-0">
         <Container>
+          <Link
+            href="/lead-leakage-calculator"
+            className="group mb-6 flex flex-col gap-2 rounded-[2rem] bg-deep p-7 text-cream transition-transform hover:-translate-y-0.5 sm:p-9"
+          >
+            <span className="text-xs font-semibold uppercase tracking-wide text-chartreuse">
+              Free tool
+            </span>
+            <span className="font-display text-2xl font-semibold sm:text-3xl">
+              Lead Leakage Calculator
+            </span>
+            <span className="text-cream/75">
+              Put in your own numbers and see what missed replies, forgotten
+              follow-ups, and manual handoffs cost you per year. No email
+              required.
+            </span>
+            <span className="mt-2 font-semibold text-mustard">
+              Run your numbers &rarr;
+            </span>
+          </Link>
           <ul className="grid gap-6 md:grid-cols-2">
             {posts.map((post) => (
               <li key={post.slug}>

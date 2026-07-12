@@ -8,6 +8,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site.url}/services`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${site.url}/about`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${site.url}/resources`, changeFrequency: "weekly", priority: 0.7 },
+    {
+      url: `${site.url}/lead-leakage-calculator`,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     { url: `${site.url}/contact`, changeFrequency: "yearly", priority: 0.6 },
   ];
 

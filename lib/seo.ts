@@ -20,7 +20,10 @@ export function buildMetadata(opts: {
     path === "/" ? `${site.name} | ${site.tagline}` : `${title} | ${site.name}`;
 
   return {
-    title: fullTitle,
+    // The root layout's title template already appends "| site name" to
+    // string titles, so subpages pass the bare title to avoid doubling it.
+    // The home title is absolute so the template never re-wraps it.
+    title: path === "/" ? { absolute: fullTitle } : title,
     description,
     alternates: { canonical },
     openGraph: {
