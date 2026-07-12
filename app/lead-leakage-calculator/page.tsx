@@ -66,9 +66,9 @@ export default function LeadLeakageCalculatorPage() {
               inquiry got a prompt reply and a real follow-up.
             </li>
             <li className="rounded-2xl border border-ink/10 bg-cream-200/50 p-5">
-              <strong className="text-ink">Manual handoff hours.</strong> Hours
-              per week your team spends moving information by hand &times; 52
-              weeks &times; what an hour is worth to you.
+              <strong className="text-ink">Manual handoff hours.</strong>{" "}
+              Hours per week your team spends moving information by hand
+              &times; 52 weeks &times; what an hour is worth to you.
             </li>
           </ul>
           <p className="mt-6 text-ink/75">
