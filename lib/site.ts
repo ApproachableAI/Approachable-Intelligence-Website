@@ -23,10 +23,10 @@ export const site = {
 export type NavLink = { href: string; label: string };
 
 export const nav: NavLink[] = [
-  { href: "/services", label: "How it works" },
-  { href: "/about", label: "About" },
-  { href: "/resources", label: "Resources" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#how-we-work", label: "How We Work" },
+  { href: "/#who", label: "Who It's For" },
+  { href: "/skills-library", label: "Skills Library" },
+  { href: "/#founders", label: "Founders" },
 ];
 
 export const ctaLabel = "Start the Conversation";

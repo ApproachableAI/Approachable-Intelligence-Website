@@ -3,7 +3,7 @@ import { Brain } from "./brain";
 import { cn } from "@/lib/cn";
 
 /**
- * Logo lockup: the brain mark plus the wordmark set in our display face.
+ * Logo lockup: the walking brain plus the wordmark set in the display face.
  * Built from text so it stays crisp at any size and recolors with the theme.
  */
 export function Logo({
@@ -23,15 +23,14 @@ export function Logo({
     >
       <Brain
         pose="walking"
-        size={40}
+        size={36}
         priority
         tone={tone}
         className="transition-transform duration-300 group-hover:-rotate-6"
       />
       {withWordmark && (
-        <span className="font-display text-[1.35rem] font-semibold leading-none tracking-tight text-ink">
-          Approachable
-          <span className="text-rust"> Intelligence</span>
+        <span className="font-display text-[18px] leading-none text-ink">
+          Approachable Intelligence
         </span>
       )}
     </Link>

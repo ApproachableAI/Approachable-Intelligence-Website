@@ -5,6 +5,11 @@ import { posts } from "@/lib/posts";
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${site.url}/`, changeFrequency: "monthly", priority: 1 },
+    {
+      url: `${site.url}/skills-library`,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
     { url: `${site.url}/services`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${site.url}/about`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${site.url}/resources`, changeFrequency: "weekly", priority: 0.7 },

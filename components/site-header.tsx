@@ -2,44 +2,35 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
-import { nav, ctaLabel } from "@/lib/site";
+import { nav, ctaLabel, site } from "@/lib/site";
 import { Logo } from "./logo";
 import { cn } from "@/lib/cn";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-ink/10 bg-cream/85 backdrop-blur supports-[backdrop-filter]:bg-cream/70">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
+    <header className="sticky top-0 z-[60] bg-cream/85 backdrop-blur-[10px] supports-[backdrop-filter]:bg-cream/85">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-[22px] px-5 py-3 sm:px-7">
         <Logo />
 
         {/* Desktop nav */}
-        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
-          {nav.map((link) => {
-            const active = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={active ? "page" : undefined}
-                className={cn(
-                  "text-[0.95rem] font-medium text-ink/80 transition-colors hover:text-rust",
-                  active && "text-rust",
-                )}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-          <Link
-            href="/contact"
-            className="rounded-full bg-rust px-5 py-2.5 text-[0.95rem] font-semibold text-cream shadow-[0_2px_0_0_var(--color-rust-700)] transition-all hover:-translate-y-0.5 hover:bg-rust-600"
+        <nav aria-label="Primary" className="hidden items-center gap-5 md:flex">
+          {nav.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-[15px] text-rust transition-colors hover:text-rust-600"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <a
+            href={site.formUrl}
+            className="rounded-full bg-rust px-[18px] py-[9px] text-[13px] font-semibold text-cream transition-colors hover:bg-rust-600 active:bg-rust-700"
           >
             {ctaLabel}
-          </Link>
+          </a>
         </nav>
 
         {/* Mobile toggle */}
@@ -87,18 +78,18 @@ export function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="block rounded-xl px-3 py-3 text-lg font-medium text-ink hover:bg-cream-200"
+                className="block rounded-xl px-3 py-3 text-lg font-medium text-ink hover:bg-sage-100"
               >
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/contact"
+            <a
+              href={site.formUrl}
               onClick={() => setOpen(false)}
               className="mt-2 block rounded-full bg-rust px-5 py-3 text-center text-lg font-semibold text-cream"
             >
               {ctaLabel}
-            </Link>
+            </a>
           </div>
         </nav>
       )}

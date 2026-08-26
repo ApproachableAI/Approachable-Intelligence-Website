@@ -21,29 +21,29 @@ export const phases: Phase[] = [
     name: "The Deep Dive",
     kicker: "The 48-hour blueprint",
     answer:
-      "We spend two focused hours digging through your digital junk drawer. We find where leads leak out, where manual duct tape holds things together, and where invisible labor eats your nights. You walk away with a raw, honest map of what to delete, what to automate, and what to protect.",
+      "We spend 1-2 hours digging through your current systems to see how your current operation works. Our goal is to find out how your tech could communicate more clearly, any potential bottlenecks, and find the daily 20-30 minute tasks that can be automated and start immediately freeing up your staff and your time",
     detail: [
       "We look at the tools you already pay for and barely use.",
       "We trace a lead from first hello to paid invoice and mark every spot it can fall through.",
       "We name the busywork that quietly steals your evenings.",
     ],
     result:
-      "A clear blueprint you own, whether you build it with us or not.",
+      "a raw, honest map of what to delete, what to automate, and what to protect — yours whether you build with us or not.",
   },
   {
     id: "the-build",
     number: "02",
     name: "The Build",
-    kicker: "Setup and buy-in",
+    kicker: "Setup & buy-in",
     answer:
-      "We install the automated architecture and we coach the humans who use it. The tech matters, but adoption is what makes it stick. Your team learns the new rhythm with us in the room, so the systems get used instead of ignored. You stop hot-gluing workflows together.",
+      "We install the automated architecture your business needs — and coach the humans who use it. The tech matters, but adoption is what makes it stick, so your team learns the new rhythm with us in the room.",
     detail: [
       "We set up the automations that handle the repetitive work.",
       "We train your people in plain language, at their pace.",
       "We tune everything to how you already talk to your customers.",
     ],
     result:
-      "A business that runs smoother, with a team that actually trusts the tools.",
+      "no more hot-gluing workflows together. The business just runs smoother.",
   },
   {
     id: "the-alliance",
@@ -51,14 +51,14 @@ export const phases: Phase[] = [
     name: "The Alliance",
     kicker: "Ongoing support",
     answer:
-      "AI keeps changing, so we stay on call. We troubleshoot, we refine the roadmap, and we fold in what is new and worth your time. You get partners who know your setup, not a ticket queue. The business runs on rhythm and flow, and you get to go home.",
+      "AI keeps changing, so we stay on call. We troubleshoot the glitches, refine the roadmap, and fold in what's new and worth your time — partners who know your setup, not a ticket queue.",
     detail: [
       "We keep an eye on what is new so you do not have to.",
       "We adjust the roadmap as your business grows.",
       "We pick up the phone when something needs a human.",
     ],
     result:
-      "A calmer business that keeps improving, with help a message away.",
+      "a business that runs on rhythm and flow, so you can actually go home.",
   },
 ];
 
@@ -116,19 +116,19 @@ export const servicesFaqs: Faq[] = [
 export const painPoints: { title: string; body: string }[] = [
   {
     title: "Operational bottlenecks",
-    body: "The work piles up at the same few steps, and it always seems to need you.",
+    body: "Growth has created a manual mess — and somehow you became the connector between sales, operations, and your team.",
   },
   {
-    title: "Scattered data and double-entry",
-    body: "The same customer info gets typed into the CRM, the invoice, and a spreadsheet.",
+    title: "System fragmentation",
+    body: "Your data lives in five spreadsheets and four apps that don't talk. Double-entry is quietly eating your week.",
   },
   {
-    title: "Underused software",
-    body: "You pay for tools and AI features nobody on the team has time to figure out.",
+    title: "Underused technology",
+    body: "You've bought software and AI tools before — they sit unused because they never fit your team's actual day.",
   },
   {
-    title: "The fear of cold service",
-    body: "You worry that automating anything will make your business feel like everyone else's.",
+    title: "The personal touch",
+    body: "You want to modernize without going cold. Your systems should protect the human approach that got you here.",
   },
 ];
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Bricolage_Grotesque } from "next/font/google";
+import { Caprasimo, Figtree } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
 import { SiteHeader } from "@/components/site-header";
@@ -7,20 +7,19 @@ import { SiteFooter } from "@/components/site-footer";
 import { JsonLd } from "@/components/json-ld";
 import { organizationSchema, localBusinessSchema } from "@/lib/schema";
 
-// Display face. We pull in the soft + wonk axes so headlines get that
-// friendly, slightly hand-made character.
-const fraunces = Fraunces({
+// Display face: chunky, warm, slightly whimsical. Single 400 weight.
+const caprasimo = Caprasimo({
   subsets: ["latin"],
+  weight: "400",
   display: "swap",
-  axes: ["opsz", "SOFT", "WONK"],
-  variable: "--font-fraunces",
+  variable: "--font-caprasimo",
 });
 
-// Body + UI face. Characterful but easy to read at small sizes.
-const bricolage = Bricolage_Grotesque({
+// Body + UI face. Friendly geometric sans, easy to read at small sizes.
+const figtree = Figtree({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-bricolage",
+  variable: "--font-figtree",
 });
 
 export const metadata: Metadata = {
@@ -61,7 +60,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${bricolage.variable} h-full`}
+      className={`${caprasimo.variable} ${figtree.variable} h-full`}
     >
       <body className="flex min-h-full flex-col bg-cream text-ink antialiased">
         {/* Keyboard users can jump straight to content */}

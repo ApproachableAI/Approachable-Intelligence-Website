@@ -1,48 +1,79 @@
 @import "tailwindcss";
 
 /*
-  Approachable Intelligence design system.
-  Palette: warm cream base, deep ink text, rust as the one "click me" color,
-  mustard + olive as small playful pops. Edit a hex here and it updates everywhere.
+  Approachable Intelligence design system — "Organic" redesign (Aug 2026).
+  Palette: warm cream base, deep green-black ink, terracotta (rust) as the one
+  "click me" color, sage as the structural green, gold as the highlight.
+  Edit a hex here and it updates everywhere.
 */
 
 @theme {
   /* Base + neutrals */
-  --color-cream: #fefbea;
-  --color-cream-200: #f6efd6;
-  --color-sand: #ece2c4;
+  --color-cream: #f2f2e6;
+  --color-cream-200: #e8e9d6;
+  --color-sand: #dbdbc7;
+  --color-card: #fcfcf6;
+  --color-neutral-100: #f8f8ee;
+  --color-neutral-200: #ececdc;
+  --color-neutral-300: #dbdbc7;
 
-  /* Ink (text + dark surfaces) */
-  --color-ink: #2a344d;
-  --color-ink-700: #3a4664;
-  --color-ink-500: #5c6885;
+  /* Ink (text) */
+  --color-ink: #242b20;
+  --color-ink-700: #42573f;
+  --color-ink-500: #7c9573;
 
-  /* Rust = primary accent (CTAs, links) */
-  --color-rust: #b7410e;
-  --color-rust-600: #9a360b;
-  --color-rust-700: #7e2c09;
+  /* Rust = terracotta, the primary accent (CTAs, links) */
+  --color-rust: #8e4125;
+  --color-rust-100: #f6ebe2;
+  --color-rust-200: #edd5c4;
+  --color-rust-300: #dcb097;
+  --color-rust-400: #c68760;
+  --color-rust-500: #a85e3b;
+  --color-rust-600: #7a351e;
+  --color-rust-700: #652a17;
+  --color-rust-800: #4c2012;
+  --color-rust-900: #33150c;
 
-  /* Deep teal = warm dark surfaces (big bands, footer, CTA). Warmer + more
-     on-brand than flat navy. Text stays ink; only large surfaces use this. */
-  --color-deep: #14474e;
-  --color-deep-700: #0f3a40;
-  --color-teal: #2c7a7e;
+  /* Sage = the structural green (bands, cards, tags) */
+  --color-sage: #506a4f;
+  --color-sage-100: #edf2e8;
+  --color-sage-200: #dce6d3;
+  --color-sage-300: #c1d2b6;
+  --color-sage-400: #9eb592;
+  --color-sage-500: #7c9573;
+  --color-sage-600: #5f7a5a;
+  --color-sage-700: #42573f;
+  --color-sage-800: #303f2e;
+  --color-sage-900: #1f2a1f;
 
-  /* Playful pops */
-  --color-mustard: #ffce1b;
-  --color-mustard-300: #ffe07a;
-  --color-olive: #9cbb04;
-  --color-olive-600: #7e9803;
-  /* Chartreuse — bright yellow-green accent, best on deep teal */
-  --color-chartreuse: #c4d600;
+  /* Gold = the highlight (squiggles, numbers, "free" tags) */
+  --color-gold: #ac7c18;
+  --color-gold-100: #f4ecd2;
+  --color-gold-200: #eadbac;
+  --color-gold-700: #7d5a0f;
+
+  /* Legacy aliases so older pages stay coherent in the new palette */
+  --color-mustard: #ac7c18;
+  --color-mustard-300: #eadbac;
+  --color-olive: #506a4f;
+  --color-olive-600: #42573f;
+  --color-chartreuse: #eadbac;
+  --color-deep: #303f2e;
+  --color-deep-700: #1f2a1f;
+  --color-teal: #42573f;
 
   /* Type */
-  --font-sans: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-caprasimo), Georgia, "Times New Roman", serif;
 
   /* Rhythm */
   --radius-xl: 1.25rem;
   --radius-2xl: 1.75rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(36, 43, 32, 0.09);
+  --shadow-md: 0 3px 12px rgba(36, 43, 32, 0.11);
+  --shadow-lg: 0 14px 36px rgba(36, 43, 32, 0.16);
 }
 
 @layer base {
@@ -64,11 +95,8 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 600;
-    line-height: 1.04;
-    letter-spacing: -0.01em;
-    /* Dial up the soft, slightly wonky Fraunces personality */
-    font-variation-settings: "opsz" 144, "SOFT" 60, "WONK" 1;
+    font-weight: 400;
+    line-height: 1.08;
   }
 
   /* Visible focus for keyboard users everywhere */
@@ -79,7 +107,7 @@
   }
 
   ::selection {
-    background: var(--color-mustard);
+    background: var(--color-gold-200);
     color: var(--color-ink);
   }
 }
@@ -92,7 +120,7 @@
 @keyframes ai-rise {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -117,38 +145,62 @@
 @keyframes ai-bob {
   0%,
   100% {
-    transform: translateY(0) rotate(-1deg);
+    transform: translateY(0) rotate(-2deg);
   }
   50% {
-    transform: translateY(-8px) rotate(1deg);
+    transform: translateY(-9px) rotate(1deg);
+  }
+}
+
+@keyframes ai-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ai-peek {
+  from {
+    transform: translateY(70px) rotate(2deg);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
   }
 }
 
 /* One-time entrance, used for the hero reveal with staggered delays */
 .ai-rise {
-  animation: ai-rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation: ai-rise 0.6s ease both;
 }
 .ai-pop {
   animation: ai-pop 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 .ai-bob {
-  animation: ai-bob 5s ease-in-out infinite;
+  animation: ai-bob 7s ease-in-out 1.4s infinite;
+}
+.ai-bob-slow {
+  animation: ai-bob 8s ease-in-out 1.4s infinite;
+}
+
+/* The gold squiggle underline draws itself in after the hero settles */
+.ai-squiggle {
+  stroke-dasharray: 130;
+  stroke-dashoffset: 130;
+  animation: ai-draw 1s ease 0.7s both;
 }
 
 .ai-delay-1 {
-  animation-delay: 0.08s;
+  animation-delay: 0.1s;
 }
 .ai-delay-2 {
-  animation-delay: 0.18s;
+  animation-delay: 0.2s;
 }
 .ai-delay-3 {
   animation-delay: 0.3s;
 }
 .ai-delay-4 {
-  animation-delay: 0.44s;
-}
-.ai-delay-5 {
-  animation-delay: 0.6s;
+  animation-delay: 0.4s;
 }
 
 /* Scroll reveal with zero JavaScript. Only browsers that support scroll-driven
@@ -156,9 +208,16 @@
 @supports (animation-timeline: view()) {
   .ai-reveal {
     opacity: 0;
-    animation: ai-rise linear both;
+    animation: ai-rise 0.7s ease both;
     animation-timeline: view();
     animation-range: entry 5% cover 22%;
+  }
+
+  /* The mascot peeking over the top edge of a band as it scrolls into view */
+  .ai-peek {
+    animation: ai-peek 0.8s ease both;
+    animation-timeline: view();
+    animation-range: entry 20% entry 80%;
   }
 }
 
@@ -169,24 +228,33 @@
   .ai-rise,
   .ai-pop,
   .ai-bob,
-  .ai-reveal {
+  .ai-bob-slow,
+  .ai-reveal,
+  .ai-peek,
+  .ai-squiggle {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+    stroke-dashoffset: 0 !important;
   }
 }
 
-/* A hand-drawn-ish highlight, used to mark a word or two */
+/* Washed treatment for photography so it sits calmly in the palette */
+.washed {
+  filter: saturate(0.72) contrast(0.96) brightness(1.04);
+}
+
+/* A hand-drawn-ish highlight, used to mark a word or two (legacy pages) */
 .ai-underline {
-  background-image: linear-gradient(transparent 62%, var(--color-mustard) 62%);
+  background-image: linear-gradient(transparent 62%, var(--color-gold-200) 62%);
   background-repeat: no-repeat;
   padding: 0 0.05em;
 }
 .ai-underline-olive {
-  background-image: linear-gradient(transparent 62%, var(--color-olive) 62%);
+  background-image: linear-gradient(transparent 62%, var(--color-sage-300) 62%);
 }
 .ai-underline-chartreuse {
-  background-image: linear-gradient(transparent 62%, var(--color-chartreuse) 62%);
+  background-image: linear-gradient(transparent 62%, var(--color-gold-200) 62%);
   background-repeat: no-repeat;
   padding: 0 0.05em;
 }

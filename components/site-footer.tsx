@@ -1,62 +1,59 @@
 import Link from "next/link";
-import { nav, site } from "@/lib/site";
-import { Logo } from "./logo";
-import { FormLink } from "./cta-button";
+import Image from "next/image";
+import { site } from "@/lib/site";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
   return (
-    <footer className="mt-8 bg-deep text-cream/90">
-      <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-8">
-        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
-          <div className="max-w-sm">
-            <div className="[&_span]:text-cream [&_span_span]:text-mustard">
-              <Logo tone="light" />
-            </div>
-            <p className="mt-4 text-cream/70">{site.tagline}</p>
-            <p className="mt-3 text-sm text-cream/60">
-              AI integration and automation for service businesses. Based in
-              Colorado, working with {site.serviceAreas[0]} and the{" "}
-              {site.serviceAreas[1]}.
-            </p>
-          </div>
-
-          <nav aria-label="Footer" className="flex flex-col gap-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-mustard">
-              Explore
-            </p>
-            {nav.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-cream/80 transition-colors hover:text-mustard"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="flex flex-col items-start gap-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-mustard">
-              Ready when you are
-            </p>
-            <FormLink />
-            <a
-              href={`mailto:${site.email}`}
-              className="text-cream/80 transition-colors hover:text-mustard"
-            >
-              {site.email}
-            </a>
+    <footer className="border-t border-ink/15 px-5 pb-10 pt-11 sm:px-7">
+      <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-8">
+        <div className="flex items-center gap-4">
+          <Image
+            src="/brand/logo-circle.png"
+            alt="Approachable Intelligence circular logo"
+            width={72}
+            height={72}
+            className="h-[72px] w-[72px] rounded-full"
+          />
+          <div>
+            <p className="font-display text-[17px]">{site.name}, LLC</p>
+            <p className="mt-1 text-[13.5px] text-ink/60">{site.tagline}</p>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-cream/15 pt-6 text-sm text-cream/55 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            &copy; {year} {site.name}. All rights reserved.
-          </p>
-          <p>Made in Colorado, for businesses that still answer the phone.</p>
-        </div>
+        <nav
+          aria-label="Footer"
+          className="flex flex-wrap gap-[22px] text-[14px]"
+        >
+          <Link
+            href="/"
+            className="text-rust no-underline transition-colors hover:text-rust-600"
+          >
+            Home
+          </Link>
+          <Link
+            href="/#how-we-work"
+            className="text-rust no-underline transition-colors hover:text-rust-600"
+          >
+            How We Work
+          </Link>
+          <Link
+            href="/skills-library"
+            className="text-rust no-underline transition-colors hover:text-rust-600"
+          >
+            Skills Library
+          </Link>
+          <a
+            href={`mailto:${site.email}`}
+            className="text-rust no-underline transition-colors hover:text-rust-600"
+          >
+            {site.email}
+          </a>
+        </nav>
       </div>
+      <p className="mt-[34px] text-center text-[12.5px] text-ink/60">
+        &copy; {year} {site.name}. All Rights Reserved.
+      </p>
     </footer>
   );
 }
