@@ -1,4 +1,6 @@
 // <brain-field>: interactive Three.js particle brain. Attributes: density (points), static ("true" disables motion).
+// Site additions: density-mobile (point count used below 768px) and a "virtual cursor" that drifts across the brain
+// on touch devices (pointer: coarse), so the push/brighten effect still happens without a mouse.
 (function () {
   if (customElements.get('brain-field')) return;
   const THREE_URL = 'https://unpkg.com/three@0.160.0/build/three.module.js';
@@ -10,12 +12,14 @@
       this.mouse = { x: 0, y: 0, tx: 0, ty: 0 };
       this.visible = true;
       this.reduced = matchMedia('(prefers-reduced-motion: reduce)').matches || this.getAttribute('static') === 'true';
+      this.coarse = matchMedia('(pointer: coarse)').matches;
       import(THREE_URL).then(T => { this.THREE = T; this.init(); }).catch(e => console.warn('brain-field: three failed', e));
     }
     disconnectedCallback() { cancelAnimationFrame(this.raf); this.ro && this.ro.disconnect(); this.io && this.io.disconnect(); this.renderer && this.renderer.dispose(); }
     init() {
       const THREE = this.THREE;
-      const N = parseInt(this.getAttribute('density') || '7000', 10);
+      const small = matchMedia('(max-width: 767px)').matches;
+      const N = parseInt((small && this.getAttribute('density-mobile')) || this.getAttribute('density') || '7000', 10);
       const renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
       renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
       this.renderer = renderer;
@@ -91,7 +95,7 @@
       group.add(new THREE.Points(geo, mat));
 
       // --- synapse lines between near neighbours ---
-      const L = Math.min(900, N / 6), lp = new Float32Array(L * 6);
+      const L = Math.min(900, Math.floor(N / 6)), lp = new Float32Array(L * 6); // floor: a fractional count overruns the buffer
       let k = 0, tries = 0;
       while (k < L && tries < L * 40) {
         tries++;
@@ -112,6 +116,7 @@
       this.ro = new ResizeObserver(() => this.resize()); this.ro.observe(this);
       this.io = new IntersectionObserver(e => { this.visible = e[0].isIntersecting; if (this.visible) this.loop(); }); this.io.observe(this);
       const onMove = e => {
+        if (e.pointerType === 'touch') return; // touch moves are scrolls; the virtual cursor drives touch devices
         const r = this.getBoundingClientRect();
         this.mouse.tx = ((e.clientX - r.left) / r.width) * 2 - 1;
         this.mouse.ty = -(((e.clientY - r.top) / r.height) * 2 - 1);
@@ -123,7 +128,9 @@
     }
     resize() {
       const w = this.clientWidth || 600, h = this.clientHeight || 500;
-      this.renderer.setSize(w, h, false); this.camera.aspect = w / h; this.camera.updateProjectionMatrix();
+      this.renderer.setSize(w, h, false); this.camera.aspect = w / h;
+      this.camera.position.z = w / h < 0.95 ? 4.1 : 5.2; // portrait canvases (phones) frame the brain closer
+      this.camera.updateProjectionMatrix();
     }
     loop() {
       cancelAnimationFrame(this.raf);
@@ -135,8 +142,9 @@
         this.group.rotation.y = -0.6 + t * 0.12 + m.x * 0.6;
         this.group.rotation.x = -m.y * 0.4 + Math.sin(t * 0.3) * 0.05;
         this.ring.rotation.z = t * 0.08;
-        // project mouse into brain-local space (approx.)
-        const v = new this.THREE.Vector3(m.x * 2.1, m.y * 1.5, 0.3).applyQuaternion(this.group.quaternion.clone().invert());
+        // project mouse into brain-local space (approx.); on touch devices a slow drifting point stands in for the cursor
+        const px = this.coarse ? Math.sin(t * 0.31) * 0.62 : m.x, py = this.coarse ? Math.cos(t * 0.23) * 0.48 : m.y;
+        const v = new this.THREE.Vector3(px * 2.1, py * 1.5, 0.3).applyQuaternion(this.group.quaternion.clone().invert());
         this.mat.uniforms.uMouse.value.copy(v);
       }
       this.renderer.render(this.scene, this.camera);

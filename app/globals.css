@@ -228,7 +228,28 @@
     box-shadow 0.45s ease,
     background 0.45s ease;
 }
-.who-card:hover {
+/* Lit state: hover on devices that can hover, the centered card in the
+   phone swipe row otherwise. */
+@media (hover: hover) {
+  .who-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:
+      0 30px 60px rgba(20, 30, 20, 0.45),
+      0 0 0 1.5px rgb(var(--accent));
+    background: linear-gradient(
+      160deg,
+      rgba(var(--accent), 0.5),
+      rgba(var(--accent), 0.14)
+    );
+  }
+  .who-card:hover .who-card__icon {
+    transform: rotate(-8deg) scale(1.1);
+  }
+  .who-card:hover .who-card__bar {
+    width: calc(100% - 56px);
+  }
+}
+.who-card.is-active {
   transform: translateY(-8px) scale(1.02);
   box-shadow:
     0 30px 60px rgba(20, 30, 20, 0.45),
@@ -238,6 +259,12 @@
     rgba(var(--accent), 0.5),
     rgba(var(--accent), 0.14)
   );
+}
+.who-card.is-active .who-card__icon {
+  transform: rotate(-8deg) scale(1.1);
+}
+.who-card.is-active .who-card__bar {
+  width: calc(100% - 56px);
 }
 .who-card__glow {
   position: absolute;
@@ -261,9 +288,6 @@
   background: rgb(var(--accent));
   transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.who-card:hover .who-card__icon {
-  transform: rotate(-8deg) scale(1.1);
-}
 .who-card__bar {
   position: absolute;
   left: 28px;
@@ -274,8 +298,30 @@
   background: rgb(var(--accent));
   transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.who-card:hover .who-card__bar {
-  width: calc(100% - 56px);
+
+/* Horizontal swipe rows on phones */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hero ground. On phones the brain sits in its own band under the copy, so
+   the sage glow moves down behind it. */
+.hero-bg {
+  background:
+    radial-gradient(ellipse 70% 60% at 72% 45%, rgba(80, 106, 79, 0.45), transparent 60%),
+    radial-gradient(ellipse 40% 40% at 20% 90%, rgba(172, 124, 24, 0.2), transparent 60%),
+    linear-gradient(180deg, var(--color-ink) 80%, #3e5a3e 100%);
+}
+@media (max-width: 767px) {
+  .hero-bg {
+    background:
+      radial-gradient(ellipse 90% 40% at 50% 80%, rgba(80, 106, 79, 0.5), transparent 65%),
+      radial-gradient(ellipse 50% 30% at 10% 60%, rgba(172, 124, 24, 0.18), transparent 60%),
+      linear-gradient(180deg, var(--color-ink) 80%, #3e5a3e 100%);
+  }
 }
 
 /* ------------------------------------------------------------------ */

@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
 import { site, ctaLabel } from "@/lib/site";
-import { home, phases, painPoints } from "@/lib/content";
+import { home, phases } from "@/lib/content";
 import { skills } from "@/lib/skills";
 import { BrainField } from "@/components/brain-field";
 import { SyncDemo } from "@/components/sync-demo";
+import { WhoCards } from "@/components/who-cards";
 import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
 import { serviceSchema } from "@/lib/schema";
@@ -39,27 +39,6 @@ function Kicker({
     </p>
   );
 }
-
-/* Lucide icon paths for the "who we work with" cards. */
-const WHO_ICONS = [
-  // Funnel — operational bottlenecks
-  <path key="funnel" d="M22 3H2l8 9.5V19l4 2v-8.5L22 3z" />,
-  // Copy — system fragmentation
-  <g key="copy">
-    <rect x="9" y="9" width="12" height="12" rx="2.5" />
-    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-  </g>,
-  // Zap — underused technology
-  <path key="zap" d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />,
-  // Heart — the personal touch
-  <path
-    key="heart"
-    d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 1 0-7.8 7.8l8.8 8.8 8.8-8.8a5.5 5.5 0 0 0 0-7.8z"
-  />,
-];
-
-/* Accent per card as an RGB triplet: sage-bright, gold-bright, terra-bright, cream. */
-const WHO_ACCENTS = ["158,196,154", "224,174,63", "216,114,74", "242,242,230"];
 
 /* Illustration + accent per roadmap step: gold, sage, terracotta. */
 const ROADMAP = [
@@ -121,22 +100,20 @@ export default function HomePage() {
       {/* ---------------------------------------------------------------- */}
       <header
         id="top"
-        className="relative grid min-h-[calc(100vh-66px)] grid-cols-[minmax(0,1fr)] overflow-hidden"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 60% at 72% 45%, rgba(80,106,79,.45), transparent 60%), radial-gradient(ellipse 40% 40% at 20% 90%, rgba(172,124,24,.2), transparent 60%), linear-gradient(180deg, var(--color-ink) 80%, #3E5A3E 100%)",
-        }}
+        className="hero-bg relative flex flex-col overflow-hidden md:grid md:min-h-[calc(100vh-66px)] md:grid-cols-[minmax(0,1fr)]"
       >
-        {/* Live particle brain, right ~62vw */}
+        {/* Live particle brain. Phones: its own band under the copy (the
+            statement band overlaps the bottom 70px, hence the padding).
+            Wide screens: absolute, right ~62vw, behind the copy. */}
         <div
-          className="absolute inset-0 left-auto w-[min(62vw,900px)] min-w-[340px]"
+          className="order-2 h-[min(60vh,560px)] min-h-[360px] w-full pb-[70px] md:absolute md:inset-0 md:left-auto md:order-none md:h-auto md:min-h-0 md:w-[min(62vw,900px)] md:min-w-[340px] md:pb-0"
           aria-hidden="true"
         >
-          <BrainField density="7500" />
+          <BrainField density="7500" densityMobile="3600" />
         </div>
-        {/* Left→right fade so the copy stays legible over the brain */}
+        {/* Left→right fade so the copy stays legible over the brain (wide screens) */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 hidden md:block"
           style={{
             background:
               "linear-gradient(90deg, var(--color-ink) 30%, rgba(43,59,44,.6) 55%, transparent 75%)",
@@ -144,7 +121,7 @@ export default function HomePage() {
           aria-hidden="true"
         />
 
-        <div className="relative mx-auto flex w-full max-w-[1200px] flex-col justify-center px-7 pb-20 pt-[clamp(60px,10vh,120px)]">
+        <div className="relative mx-auto flex w-full max-w-[1200px] flex-col justify-center px-7 pb-4 pt-[clamp(48px,8vh,120px)] md:pb-20 md:pt-[clamp(60px,10vh,120px)]">
           <div className="max-w-[640px]">
             <div className="ai-rise flex items-center gap-3">
               <span
@@ -299,37 +276,7 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-[18px]">
-            {painPoints.map((point, i) => (
-              <div
-                key={point.title}
-                className="who-card"
-                style={{ "--accent": WHO_ACCENTS[i] } as CSSProperties}
-              >
-                <div className="who-card__glow" aria-hidden="true" />
-                <div className="who-card__icon">
-                  <svg
-                    width="26"
-                    height="26"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#1B231B"
-                    strokeWidth="2.25"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    {WHO_ICONS[i]}
-                  </svg>
-                </div>
-                <h3 className="mt-2 text-[24px]">{point.title}</h3>
-                <p className="text-[15px] leading-[1.6] text-cream/72">
-                  {point.body}
-                </p>
-                <span className="who-card__bar" aria-hidden="true" />
-              </div>
-            ))}
-          </div>
+          <WhoCards />
         </div>
       </section>
 
