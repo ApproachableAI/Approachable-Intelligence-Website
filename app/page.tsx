@@ -1,99 +1,46 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
 import { site, ctaLabel } from "@/lib/site";
-import { phases, painPoints } from "@/lib/content";
-import { Brain } from "@/components/brain";
+import { home, phases, painPoints } from "@/lib/content";
+import { skills } from "@/lib/skills";
+import { BrainField } from "@/components/brain-field";
+import { SyncDemo } from "@/components/sync-demo";
+import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
 import { serviceSchema } from "@/lib/schema";
+import { cn } from "@/lib/cn";
 
 export const metadata: Metadata = buildMetadata({
-  title: "AI Consulting & Automation for Service Businesses",
+  title: "AI Consulting & Automation for Small Businesses",
   description:
-    "Approachable Intelligence helps small and medium service businesses put AI to work on the busy work while protecting the personal touch that made them successful. Big Tech Energy, Small Business Soul.",
+    "Approachable Intelligence puts AI to work on the follow-ups, the double-entry, and the scheduling, so small businesses can protect the personal touch that made them successful. Big Tech Energy. Small Business Soul.",
   path: "/",
 });
 
-/* The hand-drawn gold squiggle that underlines a word or two. */
-function Squiggle({
-  draw = false,
-  color = "var(--color-gold)",
-  viewBox = "0 0 120 10",
-  d = "M2 6 Q 12 0 22 6 T 42 6 T 62 6 T 82 6 T 102 6 T 118 5",
+/* Small uppercase label above a heading. */
+function Kicker({
+  children,
+  className,
 }: {
-  draw?: boolean;
-  color?: string;
-  viewBox?: string;
-  d?: string;
+  children: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <svg
-      viewBox={viewBox}
-      preserveAspectRatio="none"
-      className="absolute -bottom-2 left-0 h-3 w-full overflow-visible"
-      aria-hidden="true"
+    <p
+      className={cn(
+        "mb-4 text-[12.5px] font-semibold uppercase tracking-[.16em]",
+        className,
+      )}
     >
-      <path
-        d={d}
-        fill="none"
-        stroke={color}
-        strokeWidth="3.5"
-        strokeLinecap="round"
-        className={draw ? "ai-squiggle" : undefined}
-      />
-    </svg>
+      {children}
+    </p>
   );
 }
 
-/* The dotted curved arrows joining the roadmap steps. */
-function RoadmapArrow({ mirrored = false }: { mirrored?: boolean }) {
-  return (
-    <div className="flex justify-center" aria-hidden="true">
-      <svg viewBox="0 0 70 84" className="h-[66px] w-[54px]">
-        {mirrored ? (
-          <>
-            <path
-              d="M20 6 C 56 22, 10 44, 42 66"
-              fill="none"
-              stroke="var(--color-sage-400)"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeDasharray="1 9"
-            />
-            <path
-              d="M42 66 l-12 -4 M42 66 l-1 -13"
-              fill="none"
-              stroke="var(--color-sage-400)"
-              strokeWidth="3"
-              strokeLinecap="round"
-            />
-          </>
-        ) : (
-          <>
-            <path
-              d="M50 6 C 14 22, 60 44, 28 66"
-              fill="none"
-              stroke="var(--color-sage-400)"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeDasharray="1 9"
-            />
-            <path
-              d="M28 66 l12 -4 M28 66 l1 -13"
-              fill="none"
-              stroke="var(--color-sage-400)"
-              strokeWidth="3"
-              strokeLinecap="round"
-            />
-          </>
-        )}
-      </svg>
-    </div>
-  );
-}
-
-/* Lucide icon paths for the "who we work with" cards, stroke 2.75. */
+/* Lucide icon paths for the "who we work with" cards. */
 const WHO_ICONS = [
   // Funnel — operational bottlenecks
   <path key="funnel" d="M22 3H2l8 9.5V19l4 2v-8.5L22 3z" />,
@@ -111,482 +58,525 @@ const WHO_ICONS = [
   />,
 ];
 
-const WHO_STYLES = [
-  { card: "bg-sage-100", chip: "bg-sage-200", stroke: "var(--color-sage-800)" },
-  { card: "bg-gold-100", chip: "bg-gold-200", stroke: "var(--color-gold-700)" },
-  {
-    card: "bg-neutral-100",
-    chip: "bg-neutral-200",
-    stroke: "var(--color-sage-700)",
-  },
-  { card: "bg-rust-100", chip: "bg-rust-200", stroke: "var(--color-rust-700)" },
-];
+/* Accent per card as an RGB triplet: sage-bright, gold-bright, terra-bright, cream. */
+const WHO_ACCENTS = ["158,196,154", "224,174,63", "216,114,74", "242,242,230"];
 
+/* Illustration + accent per roadmap step: gold, sage, terracotta. */
 const ROADMAP = [
   {
     image: "/roadmap/roadmap-01-dive.png",
     alt: "Brain mascot diving into a coffee cup",
-    circle: "bg-gold-100",
-    imageWidth: "w-[76%]",
-    number: "text-gold",
-    kicker: "text-gold-700",
+    width: 345,
+    height: 354,
+    imageWidth: "w-[74%]",
+    ring: "0 0 0 1px rgba(224,174,63,.4), 0 0 90px rgba(224,174,63,.18)",
+    kicker: "text-gold-bright",
+    result: "text-gold-pale",
   },
   {
     image: "/roadmap/roadmap-02-build.png",
     alt: "Brain mascot working at a computer",
-    circle: "bg-sage-100",
-    imageWidth: "w-[76%]",
-    number: "text-sage",
-    kicker: "text-sage-700",
+    width: 357,
+    height: 306,
+    imageWidth: "w-[74%]",
+    ring: "0 0 0 1px rgba(158,196,154,.45), 0 0 90px rgba(158,196,154,.18)",
+    kicker: "text-sage-bright",
+    result: "text-sage-bright",
   },
   {
     image: "/roadmap/roadmap-03-alliance.png",
     alt: "Brain mascot sitting cross-legged on a desk, helping a man work",
-    circle: "bg-rust-100",
-    imageWidth: "w-[82%]",
-    number: "text-rust",
-    kicker: "text-rust-700",
+    width: 446,
+    height: 389,
+    imageWidth: "w-[80%]",
+    ring: "0 0 0 1px rgba(216,114,74,.45), 0 0 90px rgba(216,114,74,.18)",
+    kicker: "text-terra-bright",
+    result: "text-terra-pale",
   },
 ];
 
+/* Wraps one phrase of a sentence in <strong>. */
+function Emphasize({ text, phrase }: { text: string; phrase: string }) {
+  const at = text.indexOf(phrase);
+  if (at < 0) return <>{text}</>;
+  return (
+    <>
+      {text.slice(0, at)}
+      <strong>{phrase}</strong>
+      {text.slice(at + phrase.length)}
+    </>
+  );
+}
+
 export default function HomePage() {
+  const { hero, statement, demo, who, roadmap, skillsTeaser, founders, finalCta } =
+    home;
+
   return (
     <>
       <JsonLd data={serviceSchema()} />
 
-      {/* Hero */}
+      {/* ---------------------------------------------------------------- */}
+      {/* Hero                                                              */}
+      {/* ---------------------------------------------------------------- */}
       <header
         id="top"
-        className="mx-auto flex max-w-[1160px] flex-wrap items-center gap-10 px-7 pb-10 pt-14"
+        className="relative grid min-h-[calc(100vh-66px)] grid-cols-[minmax(0,1fr)] overflow-hidden"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 60% at 72% 45%, rgba(80,106,79,.45), transparent 60%), radial-gradient(ellipse 40% 40% at 20% 90%, rgba(172,124,24,.2), transparent 60%), linear-gradient(180deg, var(--color-ink) 80%, #3E5A3E 100%)",
+        }}
       >
-        <div className="min-w-[300px] flex-[1_1_480px]">
-          <span className="ai-rise inline-block rounded-full bg-sage-200 px-3.5 py-1.5 text-xs font-semibold text-sage-800">
-            AI consulting &amp; automation for service businesses
-          </span>
-          <h1 className="ai-rise ai-delay-1 mb-[18px] mt-5 text-[clamp(40px,5vw,58px)] leading-[1.06]">
-            Clear your plate.
-            <br />
-            Keep your{" "}
-            <span className="relative inline-block whitespace-nowrap">
-              special sauce.
-              <Squiggle draw />
-            </span>
-          </h1>
-          <p className="ai-rise ai-delay-2 max-w-[540px] text-lg leading-[1.65] text-ink/82">
-            We help small and medium service businesses put AI to work on the
-            busy work — the follow-ups, the double-entry, the scheduling — while
-            protecting the personal touch that made you successful in the first
-            place.
-          </p>
-          <div className="ai-rise ai-delay-3 mt-[26px] flex flex-wrap gap-3.5">
-            <a
-              href={site.formUrl}
-              className="inline-flex items-center justify-center rounded-full bg-rust px-[26px] py-[13px] text-[15px] font-semibold text-cream transition-colors hover:bg-rust-600 active:bg-rust-700"
-            >
-              {ctaLabel}
-            </a>
-            <Link
-              href="/skills-library"
-              className="inline-flex items-center justify-center rounded-full px-[26px] py-[13px] text-[15px] font-semibold text-ink ring-2 ring-inset ring-ink/15 transition-all hover:ring-ink/40"
-            >
-              Browse the free Skills Library
-            </Link>
-          </div>
-          <p className="ai-rise ai-delay-4 mt-[18px] text-[13.5px] text-ink/60">
-            Based in Colorado &middot; Working with service businesses
-            everywhere
-          </p>
+        {/* Live particle brain, right ~62vw */}
+        <div
+          className="absolute inset-0 left-auto w-[min(62vw,900px)] min-w-[340px]"
+          aria-hidden="true"
+        >
+          <BrainField density="7500" />
         </div>
+        {/* Left→right fade so the copy stays legible over the brain */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, var(--color-ink) 30%, rgba(43,59,44,.6) 55%, transparent 75%)",
+          }}
+          aria-hidden="true"
+        />
 
-        <div className="relative min-h-[400px] min-w-[300px] flex-[0_1_420px]">
-          <div
-            className="absolute bottom-1.5 left-1/2 h-[340px] w-[340px] -translate-x-1/2 rounded-full bg-sage-200"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute right-3 top-1.5 h-[70px] w-[70px] rounded-full bg-gold-200"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute left-1 top-16 h-[26px] w-[26px] rounded-full bg-rust-200"
-            aria-hidden="true"
-          />
-          <Image
-            src="/roadmap/roadmap-01-dive.png"
-            alt="The Approachable Intelligence brain mascot diving into a cup of coffee"
-            width={345}
-            height={354}
-            priority
-            className="ai-rise ai-delay-1 ai-bob relative mx-auto mt-[26px] block h-auto w-[min(330px,86%)]"
-          />
-          <div className="absolute -bottom-1.5 -left-1.5 w-[190px]" aria-hidden="true">
-            <svg viewBox="0 0 150 70" className="ml-16 block w-[110px]">
-              <path
-                d="M10 62 C 30 58 60 40 96 16"
-                fill="none"
-                stroke="var(--color-rust)"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeDasharray="1 9"
+        <div className="relative mx-auto flex w-full max-w-[1200px] flex-col justify-center px-7 pb-20 pt-[clamp(60px,10vh,120px)]">
+          <div className="max-w-[640px]">
+            <div className="ai-rise flex items-center gap-3">
+              <span
+                className="ai-pulse h-2 w-2 rounded-full bg-sage-bright"
+                aria-hidden="true"
               />
-              <path
-                d="M96 16 l-15 1 M96 16 l-4 14"
-                fill="none"
-                stroke="var(--color-rust)"
-                strokeWidth="3"
-                strokeLinecap="round"
-              />
-            </svg>
-            <p className="mt-0.5 -rotate-[4deg] font-display text-[15px] text-rust">
-              Let&apos;s &quot;Dive In&quot; together
+              <span className="text-[12.5px] font-semibold uppercase tracking-[.16em] text-sage-bright">
+                {hero.kicker}
+              </span>
+            </div>
+            <h1 className="ai-rise ai-delay-1 mb-6 mt-[26px] text-[clamp(46px,6.2vw,84px)] leading-[.98]">
+              {hero.headline}
+              <br />
+              <em className="relative inline-block italic text-gold-pale">
+                {hero.headlineEmphasis}
+                <svg
+                  viewBox="0 0 120 10"
+                  preserveAspectRatio="none"
+                  className="absolute -bottom-1.5 left-0 h-3 w-full overflow-visible"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M2 6 Q 12 0 22 6 T 42 6 T 62 6 T 82 6 T 102 6 T 118 5"
+                    fill="none"
+                    stroke="var(--color-terra-bright)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    className="ai-squiggle"
+                  />
+                </svg>
+              </em>
+            </h1>
+            <p className="ai-rise ai-delay-2 max-w-[540px] text-[clamp(17px,1.4vw,20px)] leading-[1.6] text-cream/72">
+              {hero.body}
             </p>
+            <div className="ai-rise ai-delay-3 mt-[34px] flex flex-wrap gap-3.5">
+              <a
+                href={site.formUrl}
+                className="btn-gold px-[30px] py-[15px] text-[15.5px]"
+              >
+                {ctaLabel}
+              </a>
+              <a href="#demo" className="btn-outline px-7 py-3.5 text-[15.5px]">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="var(--color-cream)"
+                  aria-hidden="true"
+                >
+                  <path d="M7 4v16l13-8z" />
+                </svg>
+                {hero.secondaryCta}
+              </a>
+            </div>
           </div>
         </div>
       </header>
 
-      {/* Statement band */}
-      <section className="mx-auto mt-[70px] max-w-[1240px] px-5">
-        <div className="relative rounded-[40px] bg-sage px-[8%] pb-[70px] pt-[76px] text-cream">
-          <Image
-            src="/mascot/brain-standing.png"
-            alt=""
-            aria-hidden="true"
-            width={96}
-            height={96}
-            className="ai-peek absolute -top-[72px] right-[9%] h-24 w-auto"
-          />
-          <p className="mb-3.5 text-xs uppercase tracking-[0.16em] text-gold-200">
-            Our whole philosophy
-          </p>
-          <h2 className="mb-5 text-[clamp(34px,4.6vw,54px)] leading-[1.1] text-cream">
-            Big Tech Energy.
-            <br />
-            Small Business{" "}
-            <span className="relative inline-block">
-              Soul.
-              <Squiggle
-                color="var(--color-gold-200)"
-                viewBox="0 0 90 10"
-                d="M2 6 Q 10 0 18 6 T 34 6 T 50 6 T 66 6 T 86 5"
-              />
-            </span>
-          </h2>
-          <p className="max-w-[660px] text-lg leading-[1.65] text-cream/88">
-            Most AI is &ldquo;digital duct tape&rdquo; &mdash; another tool
-            stuck on top of the pile. We build the kind that actually works: it
-            clears your plate, un-gunks your systems, and keeps the special
-            sauce that makes your business{" "}
-            <em className="not-italic text-gold-200">yours</em>.
+      {/* ---------------------------------------------------------------- */}
+      {/* Statement band                                                    */}
+      {/* ---------------------------------------------------------------- */}
+      <section
+        className="pillow relative -mt-[70px] overflow-hidden px-7 py-[clamp(80px,10vw,130px)] text-cream shadow-[0_-30px_80px_rgba(43,59,44,.5)]"
+        style={{
+          background:
+            "linear-gradient(160deg, #617D5F, var(--color-sage) 60%, #46603F)",
+        }}
+      >
+        <div
+          className="absolute -right-[6%] -top-[20%] h-[46vw] w-[46vw] rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(242,242,230,.14), transparent 70%)",
+          }}
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto grid max-w-[1200px] grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-end gap-12">
+          <div>
+            <Kicker className="mb-[18px] text-gold-pale">
+              {statement.kicker}
+            </Kicker>
+            <h2 className="text-[clamp(44px,6vw,92px)] leading-[.95]">
+              {statement.headline}
+              <br />
+              <em className="italic text-gold-pale">
+                {statement.headlineEmphasis}
+              </em>
+            </h2>
+          </div>
+          <p className="max-w-[520px] text-[clamp(17px,1.4vw,20px)] leading-[1.6] text-cream/88">
+            {statement.body}{" "}
+            <strong className="text-gold-pale">{statement.bodyEmphasis}</strong>.
           </p>
         </div>
       </section>
 
-      {/* Who we work with */}
+      {/* ---------------------------------------------------------------- */}
+      {/* Live demo: all your systems should talk to each other             */}
+      {/* ---------------------------------------------------------------- */}
+      <section
+        id="demo"
+        className="mx-auto max-w-[1200px] scroll-mt-[70px] px-7 pb-10 pt-[clamp(90px,10vw,140px)]"
+      >
+        <Reveal className="mx-auto mb-11 max-w-[700px] text-center">
+          <Kicker className="text-sage-bright">{demo.kicker}</Kicker>
+          <h2 className="mb-[18px] text-[clamp(34px,4vw,54px)] leading-[1.05]">
+            {demo.headline}
+          </h2>
+          <p className="text-[17px] leading-[1.6] text-cream/72">{demo.body}</p>
+        </Reveal>
+        <SyncDemo />
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/* Who we work with                                                  */}
+      {/* ---------------------------------------------------------------- */}
       <section
         id="who"
-        className="mx-auto max-w-[1160px] scroll-mt-20 px-7 pb-2.5 pt-24"
+        className="relative mt-[clamp(70px,8vw,110px)] scroll-mt-[70px] overflow-hidden px-7 py-[clamp(80px,9vw,120px)]"
+        style={{
+          background:
+            "linear-gradient(180deg, var(--color-ink) 0%, #3B5A3B 30%, #3B5A3B 70%, var(--color-ink) 100%)",
+        }}
       >
-        <div className="ai-reveal max-w-[640px]">
-          <h2 className="mb-3 text-[clamp(30px,3.6vw,42px)]">
-            Who we work with
-          </h2>
-          <p className="text-[17px] leading-relaxed text-ink/75">
-            Small and medium-sized service businesses that have outgrown their
-            current systems. Sound familiar?
-          </p>
-        </div>
-        <div className="mt-[34px] grid grid-cols-[repeat(auto-fit,minmax(255px,1fr))] gap-[18px]">
-          {painPoints.map((p, i) => (
-            <div
-              key={p.title}
-              className={`flex flex-col gap-3 rounded-[26px] p-[26px] ${WHO_STYLES[i].card}`}
-            >
-              <div
-                className={`grid h-[42px] w-[42px] place-items-center rounded-full ${WHO_STYLES[i].chip}`}
-              >
-                <svg
-                  width="21"
-                  height="21"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke={WHO_STYLES[i].stroke}
-                  strokeWidth="2.75"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  {WHO_ICONS[i]}
-                </svg>
-              </div>
-              <h3 className="text-xl">{p.title}</h3>
-              <p className="text-[15px] leading-[1.55] text-ink/78">{p.body}</p>
+        <div
+          className="absolute -left-[10%] top-[10%] h-[40vw] w-[40vw] rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(224,174,63,.18), transparent 70%)",
+          }}
+          aria-hidden="true"
+        />
+        <div
+          className="absolute -right-[10%] bottom-0 h-[40vw] w-[40vw] rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(216,114,74,.18), transparent 70%)",
+          }}
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto max-w-[1200px]">
+          <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-[560px]">
+              <Kicker className="text-gold-pale">{who.kicker}</Kicker>
+              <h2 className="text-[clamp(34px,4vw,54px)] leading-[1.05]">
+                {who.headline}
+              </h2>
             </div>
-          ))}
+            <p className="max-w-[380px] text-[17px] leading-[1.6] text-cream/72">
+              {who.aside}
+            </p>
+          </Reveal>
+
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-[18px]">
+            {painPoints.map((point, i) => (
+              <div
+                key={point.title}
+                className="who-card"
+                style={{ "--accent": WHO_ACCENTS[i] } as CSSProperties}
+              >
+                <div className="who-card__glow" aria-hidden="true" />
+                <div className="who-card__icon">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#1B231B"
+                    strokeWidth="2.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    {WHO_ICONS[i]}
+                  </svg>
+                </div>
+                <h3 className="mt-2 text-[24px]">{point.title}</h3>
+                <p className="text-[15px] leading-[1.6] text-cream/72">
+                  {point.body}
+                </p>
+                <span className="who-card__bar" aria-hidden="true" />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* How we work — the roadmap */}
+      {/* ---------------------------------------------------------------- */}
+      {/* How we work: the Roadmap                                          */}
+      {/* ---------------------------------------------------------------- */}
       <section
         id="how-we-work"
-        className="mx-auto max-w-[1160px] scroll-mt-20 px-7 pb-[30px] pt-24"
+        className="mx-auto max-w-[1200px] scroll-mt-[70px] px-7 pb-[30px] pt-[clamp(80px,9vw,120px)]"
       >
-        <div className="ai-reveal mx-auto mb-[30px] max-w-[620px] text-center">
-          <span className="inline-block rounded-full bg-sage-200 px-3.5 py-1.5 text-xs font-semibold text-sage-800">
-            How we work
-          </span>
-          <h2 className="mb-3 mt-4 text-[clamp(30px,3.6vw,42px)]">
-            The Roadmap
+        <Reveal className="mb-5 max-w-[640px]">
+          <Kicker className="text-sage-bright">{roadmap.kicker}</Kicker>
+          <h2 className="mb-4 text-[clamp(34px,4vw,54px)] leading-[1.05]">
+            {roadmap.headline}
           </h2>
-          <p className="text-[17px] leading-relaxed text-ink/75">
-            Every client starts the same way: a conversation, then three
-            unhurried steps:
+          <p className="text-[17px] leading-[1.6] text-cream/72">
+            {roadmap.body}
           </p>
-        </div>
+        </Reveal>
 
-        {phases.map((phase, i) => (
-          <div key={phase.id}>
-            {i > 0 && <RoadmapArrow mirrored={i === 2} />}
-            <div
-              className={`ai-reveal flex items-center gap-11 py-7 ${
-                i === 1 ? "flex-wrap-reverse" : "flex-wrap"
-              }`}
+        {phases.map((phase, i) => {
+          const art = ROADMAP[i];
+          const flipped = i % 2 === 1;
+          return (
+            <Reveal
+              key={phase.id}
+              className={cn(
+                "grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-center gap-12 py-9",
+                i === 0 && "mt-5",
+              )}
             >
-              {/* Illustration in its tinted circle; text order alternates. */}
+              {/* Illustration comes first when stacked; rows alternate on wide screens */}
               <div
-                className={`mx-auto grid min-w-[270px] flex-[0_1_340px] place-items-center ${
-                  i === 1 ? "order-2" : ""
-                }`}
+                className={cn(
+                  "grid place-items-center",
+                  flipped && "order-first md:order-last",
+                )}
               >
                 <div
-                  className={`grid aspect-square w-[min(320px,100%)] place-items-center rounded-full ${ROADMAP[i].circle}`}
+                  className="disc aspect-square w-[min(340px,100%)]"
+                  style={{ boxShadow: art.ring }}
                 >
                   <Image
-                    src={ROADMAP[i].image}
-                    alt={ROADMAP[i].alt}
-                    width={446}
-                    height={389}
-                    className={`h-auto ${ROADMAP[i].imageWidth}`}
+                    src={art.image}
+                    alt={art.alt}
+                    width={art.width}
+                    height={art.height}
+                    sizes="340px"
+                    className={cn("h-auto", art.imageWidth)}
                   />
                 </div>
               </div>
-              <div
-                className={`min-w-[300px] flex-[1_1_440px] ${
-                  i === 1 ? "order-1" : ""
-                }`}
-              >
+              <div>
                 <p
-                  className={`font-display text-[56px] leading-none ${ROADMAP[i].number}`}
+                  className={cn(
+                    "mb-3 font-display text-[15px] uppercase tracking-[.14em]",
+                    art.kicker,
+                  )}
                 >
-                  {phase.number}
+                  Step {phase.number} &middot; {phase.kicker}
                 </p>
-                <h3 className="mb-1 mt-2.5 text-[28px]">{phase.name}</h3>
-                <p
-                  className={`mb-3.5 text-[13px] uppercase tracking-[0.1em] ${ROADMAP[i].kicker}`}
-                >
-                  {phase.kicker}
-                </p>
-                <p className="mb-3.5 max-w-[540px] text-[16.5px] leading-[1.65]">
+                <h3 className="mb-4 text-[clamp(30px,3vw,42px)] leading-[1.05]">
+                  {phase.name}
+                </h3>
+                <p className="mb-3.5 max-w-[520px] text-[16.5px] leading-[1.65] text-cream/72">
                   {phase.answer}
                 </p>
-                <p className="max-w-[540px] text-[15.5px] leading-[1.55] text-sage-700">
-                  <strong className="text-sage-800">The result:</strong>{" "}
+                <p
+                  className={cn(
+                    "max-w-[520px] text-[15.5px] leading-[1.55]",
+                    art.result,
+                  )}
+                >
+                  <strong className="text-cream">{roadmap.resultLabel}</strong>{" "}
                   {phase.result}
                 </p>
               </div>
-            </div>
-          </div>
-        ))}
+            </Reveal>
+          );
+        })}
       </section>
 
-      {/* Skills Library teaser */}
-      <section id="skills" className="mx-auto mt-[60px] max-w-[1240px] px-5">
-        <div className="relative flex flex-wrap items-center gap-11 rounded-[40px] bg-sage-100 px-[8%] py-16">
-          <div className="min-w-[300px] flex-[1_1_460px]">
-            <span className="inline-block rounded-full bg-gold-200 px-3.5 py-1.5 text-xs font-semibold text-gold-700">
-              Free &middot; steal these
-            </span>
-            <h2 className="mb-3 mt-4 text-[clamp(30px,3.6vw,42px)]">
-              The Skills Library
+      {/* ---------------------------------------------------------------- */}
+      {/* Skills Library teaser                                             */}
+      {/* ---------------------------------------------------------------- */}
+      <section
+        id="skills"
+        className="mx-auto mt-[clamp(70px,8vw,110px)] max-w-[1240px] px-5"
+      >
+        <div
+          className="relative grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-center gap-10 overflow-visible rounded-[28px] px-[8%] py-[clamp(48px,6vw,80px)]"
+          style={{
+            background:
+              "linear-gradient(135deg, var(--color-terra) 0%, #A8572F 55%, var(--color-gold) 130%)",
+          }}
+        >
+          {/* Standing mascot peeking over the top-right edge */}
+          <Reveal
+            variant="peek"
+            className="absolute -top-14 right-[8%] grid h-28 w-28 place-items-center rounded-full bg-cream shadow-[0_12px_30px_rgba(43,59,44,.4)]"
+            aria-hidden="true"
+          >
+            <Image
+              src="/mascot/brain-standing.png"
+              alt=""
+              width={84}
+              height={86}
+              className="h-[86px] w-auto"
+            />
+          </Reveal>
+
+          <div>
+            <Kicker className="text-gold-pale">{skillsTeaser.kicker}</Kicker>
+            <h2 className="mb-4 text-[clamp(34px,4vw,54px)] leading-[1.05]">
+              {skillsTeaser.headline}
             </h2>
-            <p className="max-w-[560px] text-[17px] leading-[1.65] text-ink/80">
-              We teach our clients&rsquo; AI assistants how to work. Now
-              we&rsquo;re giving some of that away &mdash; copy-paste skills
-              that make Claude (or any LLM) genuinely useful, free.
+            <p className="mb-[22px] max-w-[520px] text-[17px] leading-[1.65] text-cream/88">
+              {skillsTeaser.body}
             </p>
-            <ul className="mb-[26px] mt-5 grid max-w-[560px] list-none gap-3 p-0">
-              {[
-                {
-                  color: "text-sage",
-                  name: "Humanizer",
-                  blurb: "strip the “AI accent” from anything you write.",
-                },
-                {
-                  color: "text-gold",
-                  name: "Done for the Day",
-                  blurb:
-                    "end each workday with a clean recap and tomorrow’s plan.",
-                },
-                {
-                  color: "text-rust",
-                  name: "Prompt Foundations",
-                  blurb:
-                    "the briefing template that gets better answers on the first try.",
-                },
-              ].map((s) => (
-                <li key={s.name} className="flex items-baseline gap-3 text-base">
-                  <span className={`font-bold ${s.color}`}>&rarr;</span>
-                  <span>
-                    <strong>{s.name}</strong> &mdash; {s.blurb}
-                  </span>
-                </li>
-              ))}
-            </ul>
             <div className="flex flex-wrap items-center gap-3.5">
               <Link
                 href="/skills-library"
-                className="inline-flex items-center justify-center rounded-full bg-rust px-[26px] py-[13px] text-[15px] font-semibold text-cream transition-colors hover:bg-rust-600 active:bg-rust-700"
+                className="btn-cream px-7 py-3.5 text-[15px]"
               >
-                Open the Skills Library
+                {skillsTeaser.cta}
               </Link>
-              <span className="text-[13.5px] text-ink/60">
-                No email needed for the first three.
+              <span className="text-[13.5px] text-cream/75">
+                {skillsTeaser.note}
               </span>
             </div>
           </div>
-          <div className="relative mx-auto min-w-[260px] flex-[0_1_320px]">
-            <div
-              className="absolute left-1/2 top-[54%] h-[270px] w-[270px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-card"
-              aria-hidden="true"
-            />
-            <Brain
-              pose="pointing"
-              size={280}
-              className="relative mx-auto block w-[min(280px,100%)]"
-            />
-            <p
-              className="absolute -right-2 -top-[26px] rotate-[4deg] font-display text-[15px] text-sage-700"
-              aria-hidden="true"
-            >
-              the librarian is in
-            </p>
-          </div>
+
+          <ul className="grid gap-2.5">
+            {skills.map((skill) => (
+              <li
+                key={skill.id}
+                className="flex items-center justify-between gap-3.5 rounded-[14px] border border-cream/18 bg-[rgba(43,59,44,.32)] px-[18px] py-4"
+              >
+                <span>
+                  <strong className="block text-[15.5px]">{skill.teaser}</strong>
+                  <span className="text-[13.5px] text-cream/75">
+                    {skill.blurb}
+                  </span>
+                </span>
+                <span className="text-[12px] tracking-[.1em] text-gold-pale">
+                  {skill.marker}
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* Founders */}
+      {/* ---------------------------------------------------------------- */}
+      {/* Founders                                                          */}
+      {/* ---------------------------------------------------------------- */}
       <section
         id="founders"
-        className="mx-auto flex max-w-[1160px] scroll-mt-20 flex-wrap items-center gap-14 px-7 pb-10 pt-[90px]"
+        className="pillow-lg relative z-[1] -mb-[60px] mt-[clamp(80px,9vw,120px)] scroll-mt-[70px] px-7 pb-[clamp(120px,12vw,160px)] pt-[clamp(80px,9vw,120px)] text-[#1B231B] shadow-[0_40px_90px_rgba(27,35,27,.25)]"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 50% at 85% 10%, #FBFBF3, var(--color-cream) 70%)",
+        }}
       >
-        <div className="relative mx-auto min-w-[280px] flex-[0_1_380px]">
-          <div
-            className="absolute -bottom-[22px] -left-[22px] h-[150px] w-[150px] rounded-full bg-gold-200"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute -right-4 -top-5 h-16 w-16 rounded-full bg-sage-200"
-            aria-hidden="true"
-          />
-          <Image
-            src="/founders/founders.jpg"
-            alt="Ty and Jordyn sitting on a rocky overlook in the mountains"
-            width={750}
-            height={1000}
-            className="washed relative w-full -rotate-[1.5deg] rounded-[32px] shadow-md"
-          />
-        </div>
-        <div className="min-w-[300px] flex-[1_1_480px]">
-          <h2 className="mb-[18px] text-[clamp(30px,3.6vw,40px)]">
-            A message from the founders.
-          </h2>
-          <div className="max-w-[580px] space-y-4 text-[16.5px] leading-[1.7] text-ink/88">
-            <p>If you&rsquo;re here, you probably built something that matters.</p>
-            <p>
-              Not just a business, but a company with personality &mdash; where
-              relationships matter and customers are treated like people, not
-              transactions.
-            </p>
-            <p>
-              Right now, many small and medium-sized businesses feel caught
-              between two choices: modernize and risk losing their soul, or
-              stay the same and slowly fall behind.
-            </p>
-            <p>
-              We believe there&rsquo;s a better path. Technology should
-              strengthen what makes your business special, not replace it.
-            </p>
-            <p>
-              That&rsquo;s why we created{" "}
-              <strong>Approachable Intelligence</strong>: to help businesses
-              evolve thoughtfully by combining operational strategy, behavioral
-              psychology, and modern technology.
-            </p>
-            <p>
-              Because the real challenge isn&rsquo;t just adopting new tools.
-              It&rsquo;s helping people and systems adapt together.
-            </p>
+        <div className="mx-auto grid max-w-[1200px] grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-center gap-16">
+          <div className="relative">
+            <Image
+              src="/founders/founders.jpg"
+              alt={founders.photoAlt}
+              width={750}
+              height={1000}
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="block w-full rounded-[22px] shadow-[0_30px_60px_rgba(27,35,27,.2)]"
+            />
           </div>
-          <div className="mt-[22px] flex items-end gap-4">
-            <div>
-              <p className="mb-1 text-[15px]">Warmly,</p>
-              <p className="font-display text-2xl text-sage-800">
-                Ty &amp; Jordyn
-              </p>
-              <p className="mt-1 text-[13.5px] text-ink/60">
-                Founders, Approachable Intelligence
-              </p>
+          <div>
+            <Kicker className="text-sage">{founders.kicker}</Kicker>
+            <h2 className="mb-[22px] text-[clamp(34px,4vw,54px)] leading-[1.05] text-[#1B231B]">
+              {founders.headline}
+            </h2>
+            <div className="max-w-[560px] text-[16.5px] leading-[1.7] text-[#1B231B]/85">
+              {founders.letter.map((paragraph, i) => (
+                <p
+                  key={i}
+                  className={i < founders.letter.length - 1 ? "mb-3.5" : ""}
+                >
+                  <Emphasize text={paragraph} phrase={site.name} />
+                </p>
+              ))}
             </div>
-            <Brain pose="walking" size={52} className="mb-0.5" />
+            <div className="mt-[26px] flex max-w-[560px] items-end justify-between gap-5">
+              <div>
+                <p className="mb-1 text-[15px]">{founders.signoff}</p>
+                <p className="font-display text-[30px] italic text-sage">
+                  {founders.signature}
+                </p>
+                <p className="mt-1 text-[13.5px] text-[#1B231B]/60">
+                  {founders.signatureRole}
+                </p>
+              </div>
+              <Image
+                src="/mascot/brain-leaning.png"
+                alt=""
+                aria-hidden="true"
+                width={96}
+                height={104}
+                className="h-[104px] w-auto flex-none"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="mx-auto mt-10 max-w-[1240px] px-5 pb-[90px]">
-        <div className="relative flex flex-wrap items-center gap-10 rounded-[40px] bg-sage-800 px-[8%] py-[70px] text-cream">
-          <div className="min-w-[300px] flex-[1_1_460px]">
-            <h2 className="mb-4 text-[clamp(30px,3.8vw,46px)] leading-[1.12] text-cream">
-              Ready to stop drowning in busy work?
-            </h2>
-            <p className="mb-[26px] max-w-[560px] text-[17.5px] leading-relaxed text-cream/85">
-              Let&rsquo;s start with a conversation &mdash; no pitch, no
-              jargon, just an honest look at your junk drawer.
-            </p>
-            <a
-              href={site.formUrl}
-              className="inline-flex items-center justify-center rounded-full bg-cream px-[30px] py-3.5 text-base font-semibold text-rust transition-colors hover:bg-white active:bg-gold-200"
-            >
-              Let&rsquo;s Talk
-            </a>
-          </div>
-          <div className="relative mx-auto min-w-[240px] flex-[0_1_280px]">
-            <Brain
-              pose="sitting"
-              size={250}
-              className="mx-auto block w-[min(250px,100%)]"
+      {/* ---------------------------------------------------------------- */}
+      {/* Final CTA                                                         */}
+      {/* ---------------------------------------------------------------- */}
+      <section
+        className="relative overflow-hidden px-7 pb-[clamp(90px,11vw,150px)] pt-[clamp(140px,15vw,210px)]"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 70% at 50% 100%, rgba(224,174,63,.22), transparent 65%), var(--color-ink)",
+        }}
+      >
+        <div className="relative mx-auto max-w-[900px] text-center">
+          <div className="disc mx-auto mb-[30px] h-[180px] w-[180px] shadow-[0_0_0_1px_rgba(158,196,154,.45),0_0_110px_rgba(158,196,154,.25)]">
+            <Image
+              src="/mascot/brain-sitting.png"
+              alt="Brain mascot relaxing in an armchair"
+              width={129}
+              height={132}
+              className="block h-[132px] w-auto"
             />
-            <div className="absolute -left-[84px] top-2 w-[120px]" aria-hidden="true">
-              <p className="mb-0.5 -rotate-[5deg] font-display text-[15px] text-gold-200">
-                you, once it&rsquo;s running
-              </p>
-              <svg viewBox="0 0 110 54" className="ml-[26px] block w-[86px]">
-                <path
-                  d="M8 8 C 26 40, 60 46, 92 34"
-                  fill="none"
-                  stroke="var(--color-gold-200)"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeDasharray="1 9"
-                />
-                <path
-                  d="M92 34 l-13 -5 M92 34 l-9 10"
-                  fill="none"
-                  stroke="var(--color-gold-200)"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
           </div>
+          <h2 className="mb-5 text-[clamp(38px,5.4vw,74px)] leading-none">
+            {finalCta.headline}
+            <br />
+            {finalCta.headlineLine2}
+          </h2>
+          <p className="mx-auto mb-[34px] max-w-[540px] text-[18px] leading-[1.6] text-cream/72">
+            {finalCta.body}
+          </p>
+          <a
+            href={site.formUrl}
+            className="btn-gold px-[38px] py-[17px] text-[16.5px]"
+          >
+            {finalCta.cta}
+          </a>
         </div>
       </section>
     </>

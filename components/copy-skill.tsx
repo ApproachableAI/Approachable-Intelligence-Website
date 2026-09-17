@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * "Copy this skill" button. Copies the skill text to the clipboard (with a
- * hidden-textarea fallback for older browsers) and confirms for ~2.6s.
+ * hidden-textarea fallback for older browsers) and confirms for 2.6s.
  */
 export function CopySkillButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -57,13 +57,13 @@ export function CopySkillButton({ text }: { text: string }) {
       <button
         type="button"
         onClick={copy}
-        className="inline-flex items-center justify-center rounded-full bg-rust px-[22px] py-[11px] text-[14.5px] font-semibold text-cream transition-colors hover:bg-rust-600 active:bg-rust-700"
+        className="btn-gold cursor-pointer border-0 px-6 py-3 text-[14.5px]"
       >
         Copy this skill
       </button>
       <span
         role="status"
-        className={`text-sm font-bold text-sage-700 ${copied ? "" : "hidden"}`}
+        className={`text-[14px] font-semibold text-sage-bright ${copied ? "" : "hidden"}`}
       >
         Copied &#10003; &mdash; now paste it into your AI
       </span>

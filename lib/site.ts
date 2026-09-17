@@ -22,11 +22,19 @@ export const site = {
 
 export type NavLink = { href: string; label: string };
 
+// Primary navigation, in the order the design shows it.
 export const nav: NavLink[] = [
+  { href: "/#demo", label: "See it work" },
   { href: "/#how-we-work", label: "How We Work" },
-  { href: "/#who", label: "Who It's For" },
+  { href: "/#who", label: "Who It’s For" },
   { href: "/skills-library", label: "Skills Library" },
   { href: "/#founders", label: "Founders" },
+];
+
+// Footer navigation.
+export const footerNav: NavLink[] = [
+  { href: "/#how-we-work", label: "How We Work" },
+  { href: "/skills-library", label: "Skills Library" },
 ];
 
 export const ctaLabel = "Start the Conversation";

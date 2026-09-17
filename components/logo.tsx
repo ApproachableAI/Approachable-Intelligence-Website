@@ -1,38 +1,32 @@
 import Link from "next/link";
-import { Brain } from "./brain";
+import Image from "next/image";
 import { cn } from "@/lib/cn";
+import { site } from "@/lib/site";
 
 /**
- * Logo lockup: the walking brain plus the wordmark set in the display face.
- * Built from text so it stays crisp at any size and recolors with the theme.
+ * Brand lockup: the walking mascot in a 38px cream disc, plus the wordmark
+ * set in the heading face. Built from text so it stays crisp and on-theme.
  */
-export function Logo({
-  className,
-  withWordmark = true,
-  tone = "default",
-}: {
-  className?: string;
-  withWordmark?: boolean;
-  tone?: "default" | "light";
-}) {
+export function Logo({ className }: { className?: string }) {
   return (
     <Link
       href="/"
-      className={cn("group flex items-center gap-2.5", className)}
-      aria-label="Approachable Intelligence, home"
+      className={cn("flex items-center gap-3 text-cream no-underline", className)}
+      aria-label={`${site.name}, home`}
     >
-      <Brain
-        pose="walking"
-        size={36}
-        priority
-        tone={tone}
-        className="transition-transform duration-300 group-hover:-rotate-6"
-      />
-      {withWordmark && (
-        <span className="font-display text-[18px] leading-none text-ink">
-          Approachable Intelligence
-        </span>
-      )}
+      <span className="grid h-[38px] w-[38px] shrink-0 place-items-center overflow-hidden rounded-full bg-cream">
+        <Image
+          src="/mascot/brain-walking.png"
+          alt="Approachable Intelligence brain mascot"
+          width={60}
+          height={60}
+          priority
+          className="h-[30px] w-auto"
+        />
+      </span>
+      <span className="font-display text-[20px] leading-none tracking-[-0.01em]">
+        {site.name}
+      </span>
     </Link>
   );
 }

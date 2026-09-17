@@ -21,7 +21,7 @@ export const phases: Phase[] = [
     name: "The Deep Dive",
     kicker: "The 48-hour blueprint",
     answer:
-      "We spend 1-2 hours digging through your current systems to see how your current operation works. Our goal is to find out how your tech could communicate more clearly, any potential bottlenecks, and find the daily 20-30 minute tasks that can be automated and start immediately freeing up your staff and your time",
+      "We spend 1–2 hours digging through your current systems to see how your operation actually works. Our goal is to find out how your tech could communicate more clearly, spot the bottlenecks, and find the daily 20–30 minute tasks that can be automated — immediately freeing up your staff and your time.",
     detail: [
       "We look at the tools you already pay for and barely use.",
       "We trace a lead from first hello to paid invoice and mark every spot it can fall through.",
@@ -51,7 +51,7 @@ export const phases: Phase[] = [
     name: "The Alliance",
     kicker: "Ongoing support",
     answer:
-      "AI keeps changing, so we stay on call. We troubleshoot the glitches, refine the roadmap, and fold in what's new and worth your time — partners who know your setup, not a ticket queue.",
+      "AI keeps changing, so we stay on call. We troubleshoot the glitches, refine the roadmap, and fold in what’s new and worth your time — partners who know your setup, not a ticket queue.",
     detail: [
       "We keep an eye on what is new so you do not have to.",
       "We adjust the roadmap as your business grows.",
@@ -120,11 +120,11 @@ export const painPoints: { title: string; body: string }[] = [
   },
   {
     title: "System fragmentation",
-    body: "Your data lives in five spreadsheets and four apps that don't talk. Double-entry is quietly eating your week.",
+    body: "Your data lives in five spreadsheets and four apps that don’t talk. Double-entry is quietly eating your week.",
   },
   {
     title: "Underused technology",
-    body: "You've bought software and AI tools before — they sit unused because they never fit your team's actual day.",
+    body: "You’ve bought software and AI tools before — they sit unused because they never fit your team’s actual day.",
   },
   {
     title: "The personal touch",
@@ -163,3 +163,89 @@ export const founders: Founder[] = [
     ],
   },
 ];
+
+/* ------------------------------------------------------------------ */
+/* Home page copy (v2 dark-sage redesign). Final copy — lifted verbatim  */
+/* from the design handoff. Edit here, not in the components.           */
+/* ------------------------------------------------------------------ */
+
+export const home = {
+  hero: {
+    kicker: "AI consulting & automation for small businesses",
+    headline: "Smarter systems,",
+    headlineEmphasis: "earlier dinners.",
+    body: "We put AI to work on the follow-ups, the double-entry, and the scheduling, so you can protect the personal touch that made your business successful in the first place (and actually make it home for dinner).",
+    secondaryCta: "Watch it work",
+  },
+  statement: {
+    kicker: "Our whole philosophy",
+    headline: "Big Tech Energy.",
+    headlineEmphasis: "Small Business Soul.",
+    // The bold word at the end is rendered by the component.
+    body: "Most AI is “digital duct tape” — another tool stuck on top of the pile. We build the kind that actually works: it clears your plate, un-gunks your systems, and keeps the special sauce that makes your business",
+    bodyEmphasis: "yours",
+  },
+  demo: {
+    kicker: "What it feels like",
+    headline: "All your systems should talk to each other.",
+    body: "The most common starting place for our clients is getting their current systems in line and building one central “Source of Truth” — one we can ensure clean data gets into compliantly, and that lets us power multiple automations as we build out your unique, custom needs.",
+    cardLabel: "Client record sync · live",
+    sourcesLabel: "Where data starts",
+    outputsLabel: "Updated together",
+    hubTitle: "One client record",
+    sources: [
+      "Websites & landing pages",
+      "Accounting software",
+      "Sales & operating systems",
+      "Calendars & human resources",
+    ],
+    outputs: [
+      "CRM updated",
+      "Invoices & proposals drafted",
+      "Department chatbots updated",
+      "Recursive learning enabled",
+    ],
+    footnote: "Built on the tools you already pay for — no rip-and-replace.",
+  },
+  who: {
+    kicker: "Who we work with",
+    headline: "Small businesses that have outgrown their systems.",
+    aside: "Sound familiar? You’re exactly who we built this for.",
+  },
+  roadmap: {
+    kicker: "How we work",
+    headline: "The Roadmap",
+    body: "Let’s “Dive In” together. Every client starts the same way: a conversation, then three unhurried steps.",
+    resultLabel: "The result:",
+  },
+  skillsTeaser: {
+    kicker: "Free · take them with you",
+    headline: "The Skills Library",
+    body: "We teach our clients’ AI assistants how to work. Now we’re giving some of that away — copy-paste skills that make Claude (or any LLM) genuinely useful.",
+    cta: "Open the Skills Library",
+    note: "No email needed for the first three.",
+  },
+  founders: {
+    kicker: "From the founders",
+    headline: "The human part is the point.",
+    photoAlt: "Ty and Jordyn sitting on a rocky overlook in the mountains",
+    letter: [
+      "If you’re here, you probably built something that matters.",
+      "Not just a business, but a company with personality — where relationships matter and customers are treated like people, not transactions.",
+      "Right now, many small and medium-sized businesses feel caught between two choices: modernize and risk losing their soul, or stay the same and slowly fall behind.",
+      "We believe there’s a better path. Technology should strengthen what makes your business special, not replace it.",
+      // "Approachable Intelligence" is rendered in bold by the component.
+      "That’s why we created Approachable Intelligence: to help businesses evolve thoughtfully by combining operational strategy, behavioral psychology, and modern technology.",
+      "Because the real challenge isn’t just adopting new tools. It’s helping people and systems adapt together.",
+    ],
+    signoff: "Warmly,",
+    signature: "Ty & Jordyn",
+    signatureRole: "Founders, Approachable Intelligence",
+  },
+  finalCta: {
+    headline: "Ready to stop drowning",
+    headlineLine2: "in busy work?",
+    body: "Let’s start with a conversation — no pitch, no jargon, just an honest look at your junk drawer.",
+    cta: "Let’s Talk",
+  },
+} as const;

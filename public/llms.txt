@@ -16,9 +16,14 @@ Our process runs in three phases:
 
 Small and medium service businesses dealing with operational bottlenecks, scattered data and double-entry, underused software and AI tools, and the worry that automation will make their service feel cold.
 
+## Free resources
+
+The Skills Library (https://approachableintelligence.ai/skills-library) offers three free copy-paste AI skills, no email required: the Humanizer (removes the "AI accent" from writing), Done for the Day (an end-of-day recap and resume ritual), and Save Template (turns any finished result into a reusable, named skill).
+
 ## Key pages
 
 - Home: https://approachableintelligence.ai/
+- Skills Library (free AI skills): https://approachableintelligence.ai/skills-library
 - How it works (services and process): https://approachableintelligence.ai/services
 - About the founders (Ty and Jordyn): https://approachableintelligence.ai/about
 - Resources (guides on AI for service businesses): https://approachableintelligence.ai/resources

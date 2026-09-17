@@ -16,7 +16,7 @@ export default function OgImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#f2f2e6",
+          background: "#2b3b2c",
           padding: "72px",
           fontFamily: "sans-serif",
         }}
@@ -28,10 +28,10 @@ export default function OgImage() {
               height: 18,
               width: 18,
               borderRadius: 9999,
-              background: "#8e4125",
+              background: "#9ec49a",
             }}
           />
-          <div style={{ fontSize: 30, fontWeight: 700, color: "#242b20" }}>
+          <div style={{ fontSize: 30, fontWeight: 700, color: "#f2f2e6" }}>
             {site.name}
           </div>
         </div>
@@ -41,19 +41,19 @@ export default function OgImage() {
             style={{
               fontSize: 74,
               fontWeight: 800,
-              color: "#242b20",
+              color: "#f2f2e6",
               lineHeight: 1.05,
               maxWidth: 980,
             }}
           >
-            Clear your plate. Keep your special sauce.
+            Smarter systems, earlier dinners.
           </div>
-          <div style={{ marginTop: 28, fontSize: 34, color: "#8e4125", fontWeight: 700 }}>
+          <div style={{ marginTop: 28, fontSize: 34, color: "#e0ae3f", fontWeight: 700 }}>
             Big Tech Energy. Small Business Soul.
           </div>
         </div>
 
-        <div style={{ fontSize: 26, color: "#42573f" }}>
+        <div style={{ fontSize: 26, color: "#9ec49a" }}>
           AI integration for service businesses &middot; Colorado
         </div>
       </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Caprasimo, Figtree } from "next/font/google";
+import { Newsreader, Figtree } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
 import { SiteHeader } from "@/components/site-header";
@@ -7,17 +7,21 @@ import { SiteFooter } from "@/components/site-footer";
 import { JsonLd } from "@/components/json-ld";
 import { organizationSchema, localBusinessSchema } from "@/lib/schema";
 
-// Display face: chunky, warm, slightly whimsical. Single 400 weight.
-const caprasimo = Caprasimo({
+// Heading face: a warm editorial serif. Weight 400, italic for emphasis words.
+// The optical-size axis keeps big display sizes crisp and small kickers sturdy.
+const newsreader = Newsreader({
   subsets: ["latin"],
-  weight: "400",
+  weight: "variable",
+  style: ["normal", "italic"],
+  axes: ["opsz"],
   display: "swap",
-  variable: "--font-caprasimo",
+  variable: "--font-newsreader",
 });
 
 // Body + UI face. Friendly geometric sans, easy to read at small sizes.
 const figtree = Figtree({
   subsets: ["latin"],
+  weight: "variable",
   display: "swap",
   variable: "--font-figtree",
 });
@@ -60,13 +64,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${caprasimo.variable} ${figtree.variable} h-full`}
+      className={`${newsreader.variable} ${figtree.variable} h-full`}
     >
-      <body className="flex min-h-full flex-col bg-cream text-ink antialiased">
+      <body className="flex min-h-full flex-col bg-ink text-cream antialiased">
+        {/* Scroll reveals rely on JS; keep everything visible without it */}
+        <noscript>
+          <style>{`.reveal,.reveal-peek{opacity:1;transform:none}`}</style>
+        </noscript>
         {/* Keyboard users can jump straight to content */}
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-ink focus:px-5 focus:py-2 focus:text-cream"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-gold-bright focus:px-5 focus:py-2 focus:text-ink"
         >
           Skip to content
         </a>

@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendored, build-free web component shipped as-is from the design handoff.
+    "public/brain-field.js",
   ]),
 ]);
 

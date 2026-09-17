@@ -1,24 +1,41 @@
 /**
  * The three free skills on the Skills Library page. The `text` blocks are the
- * finished skill copy — what visitors copy to their clipboard — so edit them
- * only deliberately.
+ * finished skill copy — exactly what visitors copy to their clipboard — so
+ * edit them only deliberately. Lifted verbatim from the design handoff.
  */
 
+export type SkillAccent = "gold" | "sage" | "terra";
+
 export type Skill = {
+  /** Anchor id on the Skills Library page (#skill-1 …) */
   id: string;
+  /** "Skill 01" tag shown beside the title */
   number: string;
+  /** "01" marker used in the home page teaser list */
+  marker: string;
   name: string;
+  /** Short name used in the home page teaser list */
+  teaser: string;
+  /** One-line description used in the home page teaser list */
+  blurb: string;
+  /** Intro paragraph above the skill text */
   intro: string;
+  /** Which accent colour the skill uses for its tag and number */
+  accent: SkillAccent;
+  /** The skill itself, verbatim */
   text: string;
 };
 
 export const skills: Skill[] = [
   {
-    id: "skill-humanizer",
+    id: "skill-1",
     number: "Skill 01",
+    marker: "01",
     name: "The Humanizer",
-    intro:
-      "AI writing has an accent — the em-dash pileups, the “delve” and “seamless,” the everything-in-threes. This skill teaches your AI to catch its own tells, so your emails and proposals sound like you wrote them.",
+    teaser: "Humanizer",
+    blurb: "Strip the “AI accent” from anything you write.",
+    intro: "AI writing has an accent — the em-dash pileups, the “delve” and “seamless,” the everything-in-threes. This skill teaches your AI to catch its own tells, so your emails and proposals sound like you wrote them.",
+    accent: "gold",
     text: `SKILL: Humanizer
 PURPOSE: Remove the "AI accent" from writing so it reads like a person
 wrote it.
@@ -55,11 +72,14 @@ The rewritten text only, followed by a one-line note listing the biggest
 tells you removed.`,
   },
   {
-    id: "skill-done",
+    id: "skill-2",
     number: "Skill 02",
+    marker: "02",
     name: "Done for the Day",
-    intro:
-      "The workday deserves a clean ending. This skill turns “done for the day” into a wind-down ritual — a recap, a sorted to-do list, and a bookmark so tomorrow starts with “let’s go!” instead of “where was I?”",
+    teaser: "Done for the Day",
+    blurb: "End each workday with a clean recap and tomorrow’s plan.",
+    intro: "The workday deserves a clean ending. This skill turns “done for the day” into a wind-down ritual — a recap, a sorted to-do list, and a bookmark so tomorrow starts with “let’s go!” instead of “where was I?”",
+    accent: "sage",
     text: `SKILL: Done for the Day
 PURPOSE: End the workday with a clean recap, a sorted to-do list, and an
 easy way to pick the work back up tomorrow.
@@ -91,41 +111,83 @@ RULES
 - Keep the whole wrap-up under 250 words. It's a wind-down, not a report.`,
   },
   {
-    id: "skill-prompt",
+    id: "skill-3",
     number: "Skill 03",
-    name: "Prompt Foundations",
-    intro:
-      "Most “bad AI answers” are really just missing context. This is the briefing template we set up for every client — fill in the brackets once, and your AI finally knows who it’s working for.",
-    text: `SKILL: Prompt Foundations
-PURPOSE: A standing briefing that gets you a better answer on the first
-try — because the AI finally has the context a new employee would need.
+    marker: "03",
+    name: "Save Template",
+    teaser: "Save Template",
+    blurb: "Type /save-template and any finished result becomes a reusable skill.",
+    intro: "You finally got the proposal layout, the font pairing, the email tone exactly right — and next week you’ll rebuild it from scratch. Not anymore. Type /save-template and your AI captures the finished result as a new named skill you can call up forever.",
+    accent: "terra",
+    text: `SKILL: Save Template
+PURPOSE: Turn any finished result — a design, a document layout, a font
+and color combo, an email format, a report structure, a workflow — into
+a reusable skill with a custom name, so you never rebuild it again.
 
-HOW TO USE
-Fill in the brackets once, then paste this at the start of a new chat or
-into your AI's custom instructions / project settings. Reuse it forever.
+HOW TO INSTALL
+Paste this into your AI's custom instructions, a Claude Project's
+instructions, or the top of a working chat. From then on, the command
+"/save-template" is live.
 
-MY STANDING CONTEXT
-- Who I am: [name, role, company — e.g. "co-owner of a 12-person
-  plumbing company in Denver"]
-- Who we serve: [your customers, in one line]
-- How we sound: [e.g. "friendly, plain-spoken, no corporate buzzwords"]
-- Tools we use: [e.g. "Gmail, QuickBooks, Jobber"]
+TRIGGER
+When I type "/save-template" (or say "save this as a template"),
+run the SAVE FLOW below. When I type "/use-template" or mention a saved
+template by name, run the USE FLOW.
 
-HOW I WANT YOU TO WORK
-1. If my request is missing something you need, ask up to three short
-   questions BEFORE answering. Don't guess at facts about my business.
-2. When I ask for writing, match "how we sound" above.
-3. Give me the answer first, the explanation second. I'll ask for more.
-4. When a task has steps, number them so I can delegate or follow along.
-5. If you're not sure about something, say so plainly. Never make up
-   numbers, names, or policies.
-6. At the end of a big task, tell me the ONE thing you'd do next.
+SAVE FLOW
+1. Identify what to capture. Look at the most recent result we landed on
+   together in this conversation (a design, a document, a piece of
+   writing, a process, a set of settings). If it's unclear which result I
+   mean, ask ONE question: "Save the [X] we just finished, or something
+   earlier?"
+2. Ask me for a name: "What should this template be called?" Suggest one
+   short kebab-case option based on the content (e.g. "client-proposal",
+   "weekly-crew-update", "brand-fonts"). Wait for my answer.
+3. Extract the reusable DNA — not the one-off content. Capture:
+   - Structure: sections, order, headings, length of each part
+   - Style: fonts, colors (exact hex codes), spacing, sizes, tone of
+     voice, formatting rules, anything I corrected you on along the way
+   - Fixed parts: text or elements that should appear every time
+   - Variable parts: the slots that change per use, written as
+     [BRACKETED PLACEHOLDERS] with a one-line note on what goes there
+   - Rules: the do's and don'ts I stated or implied while we iterated
+4. Write the new skill in exactly this format:
 
-WHEN I GIVE YOU A TASK, I'LL TRY TO INCLUDE
-- The goal (what "done" looks like)
-- The audience (who will read or use it)
-- An example I like, if I have one
-- Constraints (length, format, deadline, things to avoid)
-If I forget one, ask me for the missing piece — that's your job.`,
+   SKILL: [template-name]
+   PURPOSE: [one sentence — what this produces and when to use it]
+   TRIGGER: When I say "/use-template [template-name]" or "make me a
+   [template-name]".
+   INPUTS TO ASK FOR: [the variable slots, as a short numbered list]
+   INSTRUCTIONS: [step-by-step: how to build the result so it matches
+   the original exactly — structure, style rules, fixed parts]
+   REFERENCE EXAMPLE: [the finished result we just made, trimmed to the
+   essential shape, with variable parts bracketed]
+   RULES: [the do's and don'ts]
+
+5. Show me the finished skill in one copyable code block and say:
+   "Saved. Paste this into your custom instructions or Project to keep
+   it permanently. Call it any time with /use-template [name]."
+6. Keep the skill active for the rest of this conversation so I can
+   test it immediately.
+
+USE FLOW
+1. Find the named template (in this conversation or in my instructions).
+2. Ask ONLY for the inputs listed under INPUTS TO ASK FOR — in one
+   message, as a short numbered list. Don't ask for anything the
+   template already fixes.
+3. Build the result following the INSTRUCTIONS and RULES exactly. Match
+   the REFERENCE EXAMPLE's shape. Don't "improve" the template unless I
+   ask.
+4. If I make a correction while using it, offer once: "Want me to update
+   the [template-name] template with that change?"
+
+RULES
+- Never save one-off facts (a specific client's name, this week's
+  numbers) as fixed parts — those are variable slots.
+- Never lose exact values. Hex codes, font names, sizes, and word counts
+  go in verbatim.
+- One template per /save-template. If the result contains several
+  reusable pieces, ask whether to split them.
+- Keep every saved skill under 400 words so it stays easy to paste.`,
   },
 ];
