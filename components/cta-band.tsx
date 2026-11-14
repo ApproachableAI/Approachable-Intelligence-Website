@@ -5,7 +5,7 @@ import { Container } from "./ui";
 /** Repeatable closing call-to-action band. */
 export function CtaBand({
   title = "Let's clear your plate.",
-  body = "Two hours and a Deep Dive is all it takes to see where your business is leaking time. No jargon, no pressure, just a straight look at what we'd fix first.",
+  body = "Two hours and a Deep Dive is all it takes to see where your business is leaking time. You get plain language and a straight look at what to fix first.",
 }: {
   title?: string;
   body?: string;

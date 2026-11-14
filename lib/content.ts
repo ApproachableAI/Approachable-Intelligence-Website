@@ -1,6 +1,6 @@
 /**
  * Shared editorial content: the three-phase process, FAQs, pain points,
- * and founder bios. Written in the Approachable Intelligence voice.
+ * and the founder bio. Written in the Approachable Intelligence voice.
  * Edit copy here once and it shows up everywhere it is used.
  */
 
@@ -51,7 +51,7 @@ export const phases: Phase[] = [
     name: "The Alliance",
     kicker: "Ongoing support",
     answer:
-      "AI keeps changing, so we stay on call. We troubleshoot the glitches, refine the roadmap, and fold in what’s new and worth your time — partners who know your setup, not a ticket queue.",
+      "AI keeps changing, so we stay on call. We troubleshoot the glitches, refine the roadmap, and fold in what’s new and worth your time. You get a partner who already knows your setup.",
     detail: [
       "We keep an eye on what is new so you do not have to.",
       "We adjust the roadmap as your business grows.",
@@ -132,7 +132,7 @@ export const painPoints: { title: string; body: string }[] = [
   },
 ];
 
-// Founder bios. Photos live in /public/founders (see asset checklist in README).
+// Founder bio. Photo lives in /public/founders.
 export type Founder = {
   name: string;
   role: string;
@@ -141,54 +141,85 @@ export type Founder = {
   bio: string[];
 };
 
-export const founders: Founder[] = [
-  {
-    name: "Ty",
-    role: "Co-founder",
-    photo: "/founders/ty.jpg",
-    credentials: "AI integration and web development",
-    bio: [
-      "Ty builds the systems. He has spent years turning messy, manual workflows into software that quietly does the work in the background.",
-      "He is the one who can look at a tangle of apps and see the three changes that would clear your plate. He likes the hard problems and hates busywork, which is the whole point.",
-    ],
-  },
-  {
-    name: "Jordyn",
-    role: "Co-founder",
-    photo: "/founders/jordyn.jpg",
-    credentials: "Coaching and human-centered adoption",
-    bio: [
-      "Jordyn makes sure the humans come along for the ride. New tools only help if people actually use them, and that is her craft.",
-      "She translates the tech into plain language, coaches your team through the change, and keeps the warmth in the work. The special sauce stays yours.",
-    ],
-  },
-];
+export const founder: Founder = {
+  name: "Ty Coutts",
+  role: "Founder",
+  photo: "/founders/ty.jpg",
+  credentials: "AI integration, workflow design, and team training",
+  bio: [
+    "Ty builds the systems and teaches the people who use them. He spends his weeks inside client firms, sitting with the engineers, office managers, and owners who do the work, then turning what they do by hand into workflows they can trust.",
+    "He likes hard problems and has no patience for busywork, which is the whole point. When you work with Approachable Intelligence, you work with Ty directly.",
+  ],
+};
 
 /* ------------------------------------------------------------------ */
-/* Home page copy (v2 dark-sage redesign). Final copy — lifted verbatim  */
-/* from the design handoff. Edit here, not in the components.           */
+/* Home page copy. Edit here, not in the components.                    */
 /* ------------------------------------------------------------------ */
 
 export const home = {
   hero: {
-    kicker: "AI consulting & automation for small businesses",
-    headline: "Smarter systems,",
-    headlineEmphasis: "earlier dinners.",
-    body: "We put AI to work on the follow-ups, the double-entry, and the scheduling, so you can protect the personal touch that made your business successful in the first place (and actually make it home for dinner).",
-    secondaryCta: "Watch it work",
+    kicker: "Custom AI workflows, guardrails & training",
+    headline: "Hours of busywork,",
+    headlineEmphasis: "done in minutes.",
+    body: "Approachable Intelligence builds AI workflows around the documents and processes your team already runs, writes the rules that keep them safe, and trains your people until the new way of working sticks.",
+    secondaryCta: "See the case study",
   },
-  statement: {
-    kicker: "Our whole philosophy",
-    headline: "Big Tech Energy.",
-    headlineEmphasis: "Small Business Soul.",
-    // The bold word at the end is rendered by the component.
-    body: "Most AI is “digital duct tape” — another tool stuck on top of the pile. We build the kind that actually works: it clears your plate, un-gunks your systems, and keeps the special sauce that makes your business",
-    bodyEmphasis: "yours",
+  // Scrolling strip under the hero: concrete things we have built.
+  built: [
+    "Submittal pre-review",
+    "Load-calc extraction",
+    "Ventilation schedules",
+    "Proposal drafting",
+    "Lead follow-up",
+    "One client record",
+    "AI use policy",
+    "Firm-wide training",
+    "Invoice & proposal drafts",
+    "Meeting notes into tasks",
+  ],
+  services: {
+    kicker: "What we do",
+    headline: "Four things, done properly.",
+    body: "Every engagement is some mix of these. You can start with one.",
+    items: [
+      {
+        icon: "workflow",
+        title: "Custom AI workflows",
+        body: "We take a task your team repeats by hand, like reviewing a submittal or building a proposal, and turn it into a workflow that produces the same reviewable output every time.",
+      },
+      {
+        icon: "sync",
+        title: "Systems that talk",
+        body: "One clean client record feeding your CRM, invoices, calendar, and follow-ups. Built on the tools you already pay for, so nothing gets ripped out.",
+      },
+      {
+        icon: "shield",
+        title: "Policy & guardrails",
+        body: "A short, plain AI use policy your staff will read: which tools are approved, what data stays out, and who reviews the output before it leaves the building.",
+      },
+      {
+        icon: "people",
+        title: "Training that sticks",
+        body: "Live sessions, one-on-ones, and office hours. We measure success by who is still using the tools ninety days after we leave the room.",
+      },
+    ],
+  },
+  caseStudy: {
+    kicker: "Case study · Maxson Engineering",
+    headline: "An engineering firm that refused to buy more shelfware.",
+    body: "Maxson Engineering is an MEP consulting firm in Colorado. They had watched AI tools get bought, demoed, and abandoned. So we started with policy and training, then built workflows their engineers can check line by line.",
+    cta: "Read the case study",
+    statLabel: "The design target for one submittal review",
+    statNote: "The engineer still checks the critical items. The seal never moves.",
+  },
+  who: {
+    kicker: "Who we help",
+    headline: "Built around how your kind of business works.",
   },
   demo: {
     kicker: "What it feels like",
     headline: "All your systems should talk to each other.",
-    body: "The most common starting place for our clients is getting their current systems in line and building one central “Source of Truth” — one we can ensure clean data gets into compliantly, and that lets us power multiple automations as we build out your unique, custom needs.",
+    body: "A common starting place is one central source of truth: a single client record that clean data flows into, and that powers every automation built after it.",
     cardLabel: "Client record sync · live",
     sourcesLabel: "Where data starts",
     outputsLabel: "Updated together",
@@ -205,47 +236,40 @@ export const home = {
       "Department chatbots updated",
       "Recursive learning enabled",
     ],
-    footnote: "Built on the tools you already pay for — no rip-and-replace.",
-  },
-  who: {
-    kicker: "Who we work with",
-    headline: "Small businesses that have outgrown their systems.",
-    aside: "Sound familiar? You’re exactly who we built this for.",
+    footnote: "Built on the tools you already pay for, with no rip-and-replace.",
   },
   roadmap: {
     kicker: "How we work",
     headline: "The Roadmap",
-    body: "Let’s “Dive In” together. Every client starts the same way: a conversation, then three unhurried steps.",
+    body: "Every client starts the same way: a conversation, then three unhurried steps.",
     resultLabel: "The result:",
   },
   skillsTeaser: {
     kicker: "Free · take them with you",
     headline: "The Skills Library",
-    body: "We teach our clients’ AI assistants how to work. Now we’re giving some of that away — copy-paste skills that make Claude (or any LLM) genuinely useful.",
+    body: "We teach our clients’ AI assistants how to work. Some of that is free: copy-paste skills that make Claude (or any LLM) useful on day one.",
     cta: "Open the Skills Library",
     note: "No email needed for the first three.",
   },
-  founders: {
-    kicker: "From the founders",
+  founder: {
+    kicker: "From the founder",
     headline: "The human part is the point.",
-    photoAlt: "Ty and Jordyn sitting on a rocky overlook in the mountains",
+    photoAlt: "Ty Coutts, founder of Approachable Intelligence, smiling in front of a mountain valley",
     letter: [
-      "If you’re here, you probably built something that matters.",
-      "Not just a business, but a company with personality — where relationships matter and customers are treated like people, not transactions.",
-      "Right now, many small and medium-sized businesses feel caught between two choices: modernize and risk losing their soul, or stay the same and slowly fall behind.",
-      "We believe there’s a better path. Technology should strengthen what makes your business special, not replace it.",
+      "If you’re here, you probably built something that matters. A firm with a reputation, where the work carries your name and customers are treated like people.",
+      "The pressure right now is to bolt AI onto everything. I have watched that go badly: tools bought, demoed once, and forgotten. The firms that get real value do it in a different order. They set the rules, teach their people, and only then build.",
       // "Approachable Intelligence" is rendered in bold by the component.
-      "That’s why we created Approachable Intelligence: to help businesses evolve thoughtfully by combining operational strategy, behavioral psychology, and modern technology.",
-      "Because the real challenge isn’t just adopting new tools. It’s helping people and systems adapt together.",
+      "That is the work I do at Approachable Intelligence. I sit with your team, learn how the job is done, and build workflows your people can check and trust.",
+      "You will work with me directly, from the first call to the last training session.",
     ],
-    signoff: "Warmly,",
-    signature: "Ty & Jordyn",
-    signatureRole: "Founders, Approachable Intelligence",
+    signoff: "Talk soon,",
+    signature: "Ty Coutts",
+    signatureRole: "Founder, Approachable Intelligence",
   },
   finalCta: {
-    headline: "Ready to stop drowning",
-    headlineLine2: "in busy work?",
-    body: "Let’s start with a conversation — no pitch, no jargon, just an honest look at your junk drawer.",
-    cta: "Let’s Talk",
+    headline: "Pick the task you’d",
+    headlineLine2: "love to never do again.",
+    body: "Bring it to a 30-minute call. You’ll leave knowing whether AI can take it off your plate, and what it would take to get there.",
+    cta: "Book a Call",
   },
 } as const;

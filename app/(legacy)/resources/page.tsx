@@ -11,7 +11,7 @@ import { breadcrumbSchema } from "@/lib/schema";
 export const metadata: Metadata = buildMetadata({
   title: "Resources: AI for Service Businesses, in Plain Language",
   description:
-    "Plain-language guides on AI integration and automation for small service businesses, from the founders of Approachable Intelligence.",
+    "Plain-language guides on AI integration and automation for small service businesses, from Approachable Intelligence.",
   path: "/resources",
 });
 

@@ -3,14 +3,15 @@ import { ctaLabel, site } from "@/lib/site";
 import { cn } from "@/lib/cn";
 
 /**
- * The one primary call to action, repeated cleanly down the site.
- * Points to the existing intake form. Use variant="ghost" for a quieter look.
+ * Call to action for the light "paper" pages. By default it books a call
+ * on Calendly; pass an internal `href` to link somewhere on the site instead.
+ * Use variant="ghost" for a quieter look.
  */
 export function CtaButton({
   className,
   variant = "solid",
   label = ctaLabel,
-  href = "/contact",
+  href = site.bookingUrl,
 }: {
   className?: string;
   variant?: "solid" | "ghost";
@@ -24,28 +25,31 @@ export function CtaButton({
       ? "bg-rust text-cream shadow-[0_2px_0_0_var(--color-rust-700)] hover:bg-rust-600 hover:-translate-y-0.5 active:translate-y-0"
       : "bg-transparent text-ink ring-2 ring-ink/15 hover:ring-ink/40 hover:-translate-y-0.5";
 
+  const arrow = (
+    <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1">
+      &rarr;
+    </span>
+  );
+
+  if (href.startsWith("http")) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(base, styles, className)}
+      >
+        {label}
+        {arrow}
+        <span className="sr-only"> (opens in a new tab)</span>
+      </a>
+    );
+  }
+
   return (
     <Link href={href} className={cn(base, styles, className)}>
       {label}
-      <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1">
-        &rarr;
-      </span>
+      {arrow}
     </Link>
-  );
-}
-
-/** Direct link to the intake form, for the final contact step. */
-export function FormLink({ className }: { className?: string }) {
-  return (
-    <a
-      href={site.formUrl}
-      className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full bg-rust px-7 py-3.5 text-base font-semibold text-cream shadow-[0_2px_0_0_var(--color-rust-700)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-rust-600",
-        className,
-      )}
-    >
-      {ctaLabel}
-      <span aria-hidden="true">&rarr;</span>
-    </a>
   );
 }

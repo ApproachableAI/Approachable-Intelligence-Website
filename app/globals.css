@@ -129,12 +129,19 @@
 /* Shapes                                                              */
 /* ------------------------------------------------------------------ */
 
-/* Pillow-shaped full-width bands (statement band, founders) */
+/* Pillow-shaped full-width bands (case study band, founder note) */
 .pillow {
   border-radius: 50% 50% 50% 50% / 110px 110px 110px 110px;
 }
 .pillow-lg {
   border-radius: 50% 50% 50% 50% / 120px 120px 120px 120px;
+}
+
+@media (max-width: 767px) {
+  .pillow,
+  .pillow-lg {
+    border-radius: 50% 50% 50% 50% / 44px 44px 44px 44px;
+  }
 }
 
 /* Cream disc that frames an illustration or mascot */
@@ -160,10 +167,21 @@
   border-radius: 999px;
   white-space: nowrap;
   text-decoration: none;
-  transition: background-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.25s ease,
+    transform 0.2s ease;
 }
 .btn-gold:hover {
   background: var(--color-gold-pale);
+  box-shadow: 0 10px 34px rgba(224, 174, 63, 0.35);
+  transform: translateY(-1px);
+}
+.btn-arrow {
+  transition: transform 0.2s ease;
+}
+a:hover > .btn-arrow {
+  transform: translateX(3px);
 }
 .btn-gold:active {
   background: var(--color-gold);
@@ -193,6 +211,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   background: var(--color-cream);
   color: var(--color-terra);
   font-weight: 700;
@@ -213,6 +232,7 @@
   position: relative;
   overflow: hidden;
   display: grid;
+  align-content: start;
   gap: 14px;
   padding: 32px 28px;
   border-radius: 22px;
@@ -279,6 +299,26 @@
     transform 0.6s ease,
     opacity 0.6s ease;
 }
+/* Cursor-following light (the component sets --mx / --my on mouse move) */
+.who-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    340px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(242, 242, 230, 0.16),
+    transparent 60%
+  );
+  transition: opacity 0.35s ease;
+}
+@media (hover: hover) {
+  .who-card:hover::after {
+    opacity: 1;
+  }
+}
 .who-card__icon {
   width: 56px;
   height: 56px;
@@ -297,6 +337,139 @@
   border-radius: 3px;
   background: rgb(var(--accent));
   transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ------------------------------------------------------------------ */
+/* Header                                                              */
+/* ------------------------------------------------------------------ */
+
+.nav-link {
+  position: relative;
+  padding: 6px 0;
+  transition: color 0.2s ease;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-gold-bright);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.nav-link:hover {
+  color: var(--color-cream);
+}
+.nav-link:hover::after,
+.nav-link.is-current::after {
+  transform: scaleX(1);
+}
+
+.mobile-menu {
+  animation: ai-fade 0.2s ease both;
+}
+.mobile-menu__item {
+  animation: ai-rise 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* ------------------------------------------------------------------ */
+/* Marquee: the "things we have built" strip                           */
+/* ------------------------------------------------------------------ */
+
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: ai-marquee 46s linear infinite;
+}
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+/* ------------------------------------------------------------------ */
+/* Blueprint: drafting grid + self-drawing plan (engineers page)       */
+/* ------------------------------------------------------------------ */
+
+.blueprint-bg {
+  background-color: #263627;
+  background-image:
+    linear-gradient(rgba(242, 242, 230, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242, 242, 230, 0.07) 1px, transparent 1px),
+    linear-gradient(rgba(242, 242, 230, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242, 242, 230, 0.03) 1px, transparent 1px);
+  background-size:
+    120px 120px,
+    120px 120px,
+    24px 24px,
+    24px 24px;
+  background-position: -1px -1px;
+}
+.bp {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: ai-draw 1.3s cubic-bezier(0.5, 0, 0.2, 1) both;
+}
+.bp-fade {
+  opacity: 0;
+  animation: ai-fade 0.7s ease both;
+}
+.bp-flag {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation:
+    ai-fade 0.5s ease both,
+    ai-flag 2.6s ease-in-out 4.4s infinite;
+}
+
+/* ------------------------------------------------------------------ */
+/* Workflow demo                                                       */
+/* ------------------------------------------------------------------ */
+
+.scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 34%;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(224, 174, 63, 0.28) 85%,
+    rgba(224, 174, 63, 0.9)
+  );
+  animation: ai-scan 1.5s ease-in-out infinite;
+}
+.stamp {
+  transition:
+    opacity 0.35s ease,
+    transform 0.5s cubic-bezier(0.2, 1.6, 0.4, 1);
+}
+
+/* FAQ disclosure */
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Tab panels */
+.tab-panel {
+  animation: ai-rise 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Numbered sequence rail (case study) */
+.rail {
+  background: linear-gradient(
+    180deg,
+    var(--color-gold-bright),
+    var(--color-sage-bright) 55%,
+    var(--color-terra-bright)
+  );
 }
 
 /* Horizontal swipe rows on phones */
@@ -358,6 +531,36 @@
   }
   to {
     stroke-dashoffset: 0;
+  }
+}
+@keyframes ai-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes ai-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes ai-scan {
+  0% {
+    top: -34%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+@keyframes ai-flag {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
   }
 }
 @keyframes ai-peek {
@@ -474,14 +677,22 @@
   }
   .reveal,
   .reveal-peek,
+  .mobile-menu,
+  .mobile-menu__item,
+  .tab-panel,
   .ai-reveal,
   .ai-rise,
   .ai-rise-fast {
     opacity: 1 !important;
     transform: none !important;
   }
-  .ai-squiggle {
+  .ai-squiggle,
+  .bp {
     stroke-dashoffset: 0 !important;
+  }
+  .bp-fade,
+  .bp-flag {
+    opacity: 1 !important;
   }
 }
 

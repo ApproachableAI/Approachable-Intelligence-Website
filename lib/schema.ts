@@ -4,6 +4,7 @@
  */
 import { site } from "./site";
 import { phases, type Faq } from "./content";
+import type { Industry } from "./industries";
 
 const logo = `${site.url}/mascot/brain-walking.png`;
 
@@ -18,7 +19,7 @@ export function organizationSchema() {
     email: site.email,
     description: site.description,
     slogan: site.tagline,
-    founder: site.founders.map((name) => ({ "@type": "Person", name })),
+    founder: { "@type": "Person", name: site.founder.name },
     areaServed: site.serviceAreas.map((name) => ({
       "@type": "AdministrativeArea",
       name,
@@ -48,6 +49,8 @@ export function localBusinessSchema() {
     })),
     knowsAbout: [
       "AI integration for small business",
+      "AI workflows for engineering and architecture firms",
+      "AI use policy",
       "AI automation",
       "Business process automation",
       "AI adoption coaching",
@@ -59,14 +62,14 @@ export function serviceSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    serviceType: "AI integration and automation for service businesses",
+    serviceType: "Custom AI workflows, AI policy, and team training",
     provider: { "@id": `${site.url}/#organization` },
     areaServed: site.serviceAreas.map((name) => ({
       "@type": "AdministrativeArea",
       name,
     })),
     description:
-      "A three-phase AI integration service for small and medium service businesses: a Deep Dive blueprint, a hands-on Build with team coaching, and an ongoing Alliance for support as AI evolves.",
+      "A three-phase AI integration service for engineering firms, architects, and service businesses: a Deep Dive blueprint, a hands-on Build with team coaching, and an ongoing Alliance for support as AI evolves.",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "How it works",
@@ -76,6 +79,31 @@ export function serviceSchema() {
           "@type": "Service",
           name: `${p.name} (${p.kicker})`,
           description: p.answer,
+        },
+      })),
+    },
+  };
+}
+
+export function industryServiceSchema(industry: Industry) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: industry.metaTitle,
+    serviceType: industry.metaTitle,
+    url: `${site.url}/industries/${industry.slug}`,
+    provider: { "@id": `${site.url}/#organization` },
+    audience: { "@type": "BusinessAudience", name: industry.navLabel },
+    description: industry.metaDescription,
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: industry.build.headline,
+      itemListElement: industry.build.items.map((item) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: item.title,
+          description: item.body,
         },
       })),
     },

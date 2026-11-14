@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   },
   description: site.description,
   applicationName: site.name,
-  authors: [{ name: "Ty" }, { name: "Jordyn" }],
+  authors: [{ name: site.founder.name }],
   creator: site.name,
   alternates: { canonical: "/" },
   openGraph: {
