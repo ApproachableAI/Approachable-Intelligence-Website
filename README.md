@@ -26,47 +26,47 @@ npm run lint    # eslint
 ```
 app/
   layout.tsx          Root layout: fonts, global metadata, header, footer, Organization + LocalBusiness schema
-  page.tsx            Home (v2 redesign: hero with the 3D brain, statement band, live sync demo,
-                      who we work with, the Roadmap, Skills Library teaser, founders letter, final CTA)
+  page.tsx            Home: hero with the 3D brain, "things we have built" strip, what we do,
+                      Maxson case study band, who-we-help tabs, live sync demo, the Roadmap,
+                      Skills Library teaser, founder note, final CTA
+  industries/[slug]/  Client-type pages (Engineers & Architects, Service Businesses), driven by lib/industries.ts
+  about/              About Ty
+  contact/            Book a call (Calendly) + email
   skills-library/     The Skills Library: three free copy-paste AI skills
-  (legacy)/           Older inner pages kept on a light "paper" wrapper until they get a redesign pass:
+  (legacy)/           Older pages kept on a light "paper" wrapper:
     services/         How it works (the three-phase process)
-    about/            About the founders
     resources/        Blog index + [slug] post template
-    contact/          Contact (embedded intake form)
     lead-leakage-calculator/
-  sitemap.ts          Auto-generated XML sitemap
-  robots.ts           robots.txt (allows AI crawlers)
-  opengraph-image.tsx Branded social card
-  not-found.tsx       Friendly 404
-  globals.css         Design system: colors, fonts, motion
+  sitemap.ts, robots.ts, opengraph-image.tsx, not-found.tsx, globals.css
 lib/
-  site.ts             Site-wide config: name, url, tagline, nav, form URL, contact, service areas
-  content.ts          Editable copy: home page sections, the three phases, FAQs, pain points, founder bios
-  skills.ts           The three free skills (name, intro, and the verbatim skill text)
-  posts.ts            Blog registry
-  schema.ts           JSON-LD builders (Organization, LocalBusiness, Service, FAQPage, BlogPosting, Breadcrumb)
-  seo.ts              Per-page metadata helper (title, description, canonical, OG, Twitter)
-components/           Reusable UI (header, footer, sync demo, scroll reveal, copy button, etc.)
+  site.ts             Site-wide config: name, url, nav, footer links, booking URL, email, service areas
+  content.ts          Editable copy: home page sections, the three phases, FAQs, founder bio
+  industries.ts       Client-type pages, including the Maxson Engineering case study
+  skills.ts           The three free skills
+  posts.ts, schema.ts, seo.ts
+components/           Reusable UI (header, footer, demos, scroll reveal, etc.)
 content/posts/        Blog post bodies (one .tsx per post)
 public/
   brain-field.js      <brain-field> web component: the Three.js particle brain in the hero
-  mascot/             Brain mascot art
-  roadmap/            Roadmap illustrations
-  brand/              Logo files
-  founders/           Founder photos
-  llms.txt            Plain-language overview for AI engines
+  vendor/             Self-hosted three.js build used by the brain
+  mascot/, roadmap/, brand/, founders/, llms.txt
 ```
 
 ## Editing content
 
-Most copy lives in two files, no component editing needed:
+Most copy lives in data files, no component editing needed:
 
-- **`lib/site.ts`** — business name, domain, tagline, navigation, the intake form URL, email, and service areas.
-- **`lib/content.ts`** — every home page section (`home`), the three process phases, both FAQ lists, the pain points, and the founder bios.
-- **`lib/skills.ts`** — the three free skills on `/skills-library`. The `text` field is what visitors copy, so edit it deliberately.
+- **`lib/site.ts`** — business name, domain, navigation, footer links, email, and `bookingUrl`. Every "Book a Call" button on the site reads `bookingUrl` (currently Calendly), so changing it there changes it everywhere.
+- **`lib/content.ts`** — every home page section (`home`), the three process phases, FAQ lists, and the founder bio.
+- **`lib/industries.ts`** — the client-type pages. Each entry holds its hero, the "what we build" cards, principles, FAQs, and an optional `caseStudy`. The Maxson Engineering case study lives in the `engineers-architects` entry.
+- **`lib/skills.ts`** — the three free skills on `/skills-library`.
 
-Change a value there and it updates across the pages, the sitemap, and the structured data.
+### Adding a client type
+
+1. Add an entry to `industries` in `lib/industries.ts` (copy the `service-businesses` entry as a starting point).
+2. Add its link to `nav` and `footerNav` in `lib/site.ts`.
+
+The page, the home page tab, the sitemap entry, and the structured data are generated from that entry.
 
 ## Adding a blog post
 
@@ -78,10 +78,8 @@ That is it. The post gets its own page, metadata, `BlogPosting` schema, a sitema
 
 ## Swapping in real assets
 
-- **Mascot poses** — drop PNGs into `public/mascot/` (`brain-pointing.png`, `brain-leaning.png`, `brain-standing.png`, `brain-sitting.png`), then flip the matching flags to `true` in `components/brain.tsx`. Anything not yet supplied falls back to the walking brain, so nothing breaks.
-- **Founder photos** — add `public/founders/ty.jpg` and `public/founders/jordyn.jpg`, then set the flags to `true` in `components/founder-avatar.tsx`. Until then, warm initial badges show in their place.
-- **Logo** — the header/footer logo is built from the brain mark plus text so it stays crisp. Raster logo files live in `public/brand/`.
-- **Favicon** — replace `app/favicon.ico` with a brain-based icon when ready.
+- **Founder photo** — `public/founders/ty.jpg`. The current file is 360px square; a larger one (800px or more) will look sharper on the About page.
+- **Logo** — the header logo is built from the brain mark plus text so it stays crisp. Raster logo files live in `public/brand/`.
 
 ## Design system
 
@@ -100,7 +98,7 @@ Fonts: **Newsreader** (headings, weight 400, italic for emphasis) and **Figtree*
 
 ### The hero brain
 
-`public/brain-field.js` registers the `<brain-field>` web component (a Three.js particle brain). It loads `three@0.160.0` from unpkg on demand, pauses when off-screen, and goes static under reduced motion. `components/brain-field.tsx` renders the tag and loads the script.
+`public/brain-field.js` registers the `<brain-field>` web component (a Three.js particle brain). It loads a self-hosted copy of `three@0.160.0` (`public/vendor/`) on demand, pauses when off-screen, and goes static under reduced motion. `components/brain-field.tsx` renders the tag and loads the script.
 
 ## Deploying
 

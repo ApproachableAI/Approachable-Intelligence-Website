@@ -9,7 +9,6 @@ import { cn } from "@/lib/cn";
 const PHOTO_AVAILABLE: Record<string, boolean> = {
   // Flip to true once the matching file exists in /public/founders.
   Ty: true,
-  Jordyn: true,
 };
 
 const TONES = ["bg-rust text-cream", "bg-olive text-ink", "bg-mustard text-ink"];

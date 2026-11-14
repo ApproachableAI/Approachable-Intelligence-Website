@@ -2,21 +2,26 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
-import { site, ctaLabel } from "@/lib/site";
+import { site } from "@/lib/site";
 import { home, phases } from "@/lib/content";
 import { skills } from "@/lib/skills";
 import { BrainField } from "@/components/brain-field";
 import { SyncDemo } from "@/components/sync-demo";
-import { WhoCards } from "@/components/who-cards";
+import { FeatureCards } from "@/components/feature-cards";
+import { IndustryTabs } from "@/components/industry-tabs";
+import { TimeShrink } from "@/components/time-shrink";
+import { Marquee } from "@/components/marquee";
+import { BookLink } from "@/components/book-link";
+import { industries } from "@/lib/industries";
 import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
 import { serviceSchema } from "@/lib/schema";
 import { cn } from "@/lib/cn";
 
 export const metadata: Metadata = buildMetadata({
-  title: "AI Consulting & Automation for Small Businesses",
+  title: "Custom AI Workflows, Guardrails & Training",
   description:
-    "Approachable Intelligence puts AI to work on the follow-ups, the double-entry, and the scheduling, so small businesses can protect the personal touch that made them successful. Big Tech Energy. Small Business Soul.",
+    "Approachable Intelligence builds custom AI workflows around the documents and processes your team already runs, writes the guardrails, and trains your people. For engineers, architects, and service businesses.",
   path: "/",
 });
 
@@ -88,8 +93,16 @@ function Emphasize({ text, phrase }: { text: string; phrase: string }) {
 }
 
 export default function HomePage() {
-  const { hero, statement, demo, who, roadmap, skillsTeaser, founders, finalCta } =
+  const { hero, built, services, caseStudy, who, demo, roadmap, skillsTeaser, founder, finalCta } =
     home;
+
+  const tabs = industries.map((industry) => ({
+    slug: industry.slug,
+    label: industry.navLabel,
+    summary: industry.teaser.summary,
+    bullets: industry.teaser.bullets,
+    badge: industry.caseStudy ? `Case study: ${industry.caseStudy.client}` : undefined,
+  }));
 
   return (
     <>
@@ -100,13 +113,12 @@ export default function HomePage() {
       {/* ---------------------------------------------------------------- */}
       <header
         id="top"
-        className="hero-bg relative flex flex-col overflow-hidden md:grid md:min-h-[calc(100vh-66px)] md:grid-cols-[minmax(0,1fr)]"
+        className="hero-bg relative flex flex-col overflow-hidden md:grid md:min-h-[min(calc(100vh-66px),860px)] md:grid-cols-[minmax(0,1fr)]"
       >
-        {/* Live particle brain. Phones: its own band under the copy (the
-            statement band overlaps the bottom 70px, hence the padding).
+        {/* Live particle brain. Phones: its own band under the copy.
             Wide screens: absolute, right ~62vw, behind the copy. */}
         <div
-          className="order-2 h-[min(60vh,560px)] min-h-[360px] w-full pb-[70px] md:absolute md:inset-0 md:left-auto md:order-none md:h-auto md:min-h-0 md:w-[min(62vw,900px)] md:min-w-[340px] md:pb-0"
+          className="order-2 h-[min(46vh,420px)] min-h-[300px] w-full md:absolute md:inset-0 md:left-auto md:order-none md:h-auto md:min-h-0 md:w-[min(62vw,900px)] md:min-w-[340px]"
           aria-hidden="true"
         >
           <BrainField density="7500" densityMobile="3600" />
@@ -121,18 +133,18 @@ export default function HomePage() {
           aria-hidden="true"
         />
 
-        <div className="relative mx-auto flex w-full max-w-[1200px] flex-col justify-center px-7 pb-4 pt-[clamp(48px,8vh,120px)] md:pb-20 md:pt-[clamp(60px,10vh,120px)]">
-          <div className="max-w-[640px]">
+        <div className="relative mx-auto flex w-full max-w-[1200px] flex-col justify-center px-6 pb-2 pt-[clamp(44px,8vh,120px)] md:px-7 md:pb-20 md:pt-[clamp(60px,10vh,120px)]">
+          <div className="max-w-[660px]">
             <div className="ai-rise flex items-center gap-3">
               <span
-                className="ai-pulse h-2 w-2 rounded-full bg-sage-bright"
+                className="ai-pulse h-2 w-2 shrink-0 rounded-full bg-sage-bright"
                 aria-hidden="true"
               />
               <span className="text-[12.5px] font-semibold uppercase tracking-[.16em] text-sage-bright">
                 {hero.kicker}
               </span>
             </div>
-            <h1 className="ai-rise ai-delay-1 mb-6 mt-[26px] text-[clamp(46px,6.2vw,84px)] leading-[.98]">
+            <h1 className="ai-rise ai-delay-1 mb-6 mt-[26px] text-[clamp(44px,6.2vw,84px)] leading-[.98]">
               {hero.headline}
               <br />
               <em className="relative inline-block italic text-gold-pale">
@@ -154,38 +166,68 @@ export default function HomePage() {
                 </svg>
               </em>
             </h1>
-            <p className="ai-rise ai-delay-2 max-w-[540px] text-[clamp(17px,1.4vw,20px)] leading-[1.6] text-cream/72">
+            <p className="ai-rise ai-delay-2 max-w-[560px] text-[clamp(17px,1.4vw,20px)] leading-[1.6] text-cream/75">
               {hero.body}
             </p>
-            <div className="ai-rise ai-delay-3 mt-[34px] flex flex-wrap gap-3.5">
-              <a
-                href={site.formUrl}
-                className="btn-gold px-[30px] py-[15px] text-[15.5px]"
+            <div className="ai-rise ai-delay-3 mt-[34px] flex flex-col gap-3.5 sm:flex-row sm:flex-wrap">
+              <BookLink className="px-[30px] py-[15px] text-[15.5px]" arrow />
+              <Link
+                href="/industries/engineers-architects#case-study"
+                className="btn-outline px-7 py-3.5 text-[15.5px]"
               >
-                {ctaLabel}
-              </a>
-              <a href="#demo" className="btn-outline px-7 py-3.5 text-[15.5px]">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="var(--color-cream)"
-                  aria-hidden="true"
-                >
-                  <path d="M7 4v16l13-8z" />
-                </svg>
                 {hero.secondaryCta}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
       </header>
 
       {/* ---------------------------------------------------------------- */}
-      {/* Statement band                                                    */}
+      {/* Things we have built                                              */}
       {/* ---------------------------------------------------------------- */}
       <section
-        className="pillow relative -mt-[70px] overflow-hidden px-7 py-[clamp(80px,10vw,130px)] text-cream shadow-[0_-30px_80px_rgba(43,59,44,.5)]"
+        aria-label="Things we have built"
+        className="border-y border-cream/12 bg-[#263627] py-5 md:py-6"
+      >
+        <Marquee items={built} />
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/* What we do                                                        */}
+      {/* ---------------------------------------------------------------- */}
+      <section
+        id="what-we-do"
+        className="relative scroll-mt-[70px] overflow-hidden px-6 py-[clamp(72px,9vw,130px)] md:px-7"
+      >
+        <div
+          className="absolute -left-[10%] top-[10%] h-[40vw] w-[40vw] rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(224,174,63,.13), transparent 70%)",
+          }}
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto max-w-[1200px]">
+          <Reveal className="mb-9 flex flex-wrap items-end justify-between gap-5 md:mb-11">
+            <div className="max-w-[620px]">
+              <Kicker className="text-gold-pale">{services.kicker}</Kicker>
+              <h2 className="text-[clamp(34px,4.4vw,60px)] leading-[1.03]">
+                {services.headline}
+              </h2>
+            </div>
+            <p className="max-w-[360px] text-[17px] leading-[1.6] text-cream/72">
+              {services.body}
+            </p>
+          </Reveal>
+          <FeatureCards items={services.items} />
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/* Case study band                                                   */}
+      {/* ---------------------------------------------------------------- */}
+      <section
+        className="pillow relative overflow-hidden px-6 py-[clamp(72px,9vw,120px)] text-cream shadow-[0_30px_80px_rgba(20,30,20,.45)] md:px-7"
         style={{
           background:
             "linear-gradient(160deg, #617D5F, var(--color-sage) 60%, #46603F)",
@@ -199,24 +241,51 @@ export default function HomePage() {
           }}
           aria-hidden="true"
         />
-        <div className="relative mx-auto grid max-w-[1200px] grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-end gap-12">
-          <div>
-            <Kicker className="mb-[18px] text-gold-pale">
-              {statement.kicker}
-            </Kicker>
-            <h2 className="text-[clamp(44px,6vw,92px)] leading-[.95]">
-              {statement.headline}
-              <br />
-              <em className="italic text-gold-pale">
-                {statement.headlineEmphasis}
-              </em>
+        <div className="relative mx-auto grid grid-cols-1 max-w-[1200px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <Reveal>
+            <Kicker className="mb-[18px] text-gold-pale">{caseStudy.kicker}</Kicker>
+            <h2 className="text-[clamp(32px,4vw,56px)] leading-[1.04]">
+              {caseStudy.headline}
             </h2>
-          </div>
-          <p className="max-w-[520px] text-[clamp(17px,1.4vw,20px)] leading-[1.6] text-cream/88">
-            {statement.body}{" "}
-            <strong className="text-gold-pale">{statement.bodyEmphasis}</strong>.
-          </p>
+            <p className="mt-5 max-w-[540px] text-[clamp(16.5px,1.35vw,19px)] leading-[1.65] text-cream/88">
+              {caseStudy.body}
+            </p>
+            <Link
+              href="/industries/engineers-architects#case-study"
+              className="btn-cream mt-8 px-7 py-3.5 text-[15px] !text-sage-deep"
+            >
+              {caseStudy.cta}
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+          </Reveal>
+          <Reveal className="rounded-[24px] border border-cream/20 bg-[rgba(27,35,27,.38)] p-6 backdrop-blur-sm sm:p-9">
+            <p className="mb-2 text-[12.5px] font-semibold uppercase tracking-[.16em] text-cream/70">
+              {caseStudy.statLabel}
+            </p>
+            <TimeShrink from={120} to={20} />
+            <p className="mt-5 text-[14.5px] leading-[1.55] text-cream/75">
+              {caseStudy.statNote}
+            </p>
+          </Reveal>
         </div>
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/* Who we help                                                       */}
+      {/* ---------------------------------------------------------------- */}
+      <section
+        id="who"
+        className="mx-auto max-w-[1200px] scroll-mt-[70px] px-6 pt-[clamp(80px,9vw,130px)] md:px-7"
+      >
+        <Reveal className="mb-9 max-w-[680px]">
+          <Kicker className="text-sage-bright">{who.kicker}</Kicker>
+          <h2 className="text-[clamp(34px,4vw,54px)] leading-[1.05]">
+            {who.headline}
+          </h2>
+        </Reveal>
+        <Reveal>
+          <IndustryTabs tabs={tabs} />
+        </Reveal>
       </section>
 
       {/* ---------------------------------------------------------------- */}
@@ -224,7 +293,7 @@ export default function HomePage() {
       {/* ---------------------------------------------------------------- */}
       <section
         id="demo"
-        className="mx-auto max-w-[1200px] scroll-mt-[70px] px-7 pb-10 pt-[clamp(90px,10vw,140px)]"
+        className="mx-auto max-w-[1200px] scroll-mt-[70px] px-6 pb-10 pt-[clamp(84px,10vw,140px)] md:px-7"
       >
         <Reveal className="mx-auto mb-11 max-w-[700px] text-center">
           <Kicker className="text-sage-bright">{demo.kicker}</Kicker>
@@ -237,55 +306,11 @@ export default function HomePage() {
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/* Who we work with                                                  */}
-      {/* ---------------------------------------------------------------- */}
-      <section
-        id="who"
-        className="relative mt-[clamp(70px,8vw,110px)] scroll-mt-[70px] overflow-hidden px-7 py-[clamp(80px,9vw,120px)]"
-        style={{
-          background:
-            "linear-gradient(180deg, var(--color-ink) 0%, #3B5A3B 30%, #3B5A3B 70%, var(--color-ink) 100%)",
-        }}
-      >
-        <div
-          className="absolute -left-[10%] top-[10%] h-[40vw] w-[40vw] rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(224,174,63,.18), transparent 70%)",
-          }}
-          aria-hidden="true"
-        />
-        <div
-          className="absolute -right-[10%] bottom-0 h-[40vw] w-[40vw] rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(216,114,74,.18), transparent 70%)",
-          }}
-          aria-hidden="true"
-        />
-        <div className="relative mx-auto max-w-[1200px]">
-          <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
-            <div className="max-w-[560px]">
-              <Kicker className="text-gold-pale">{who.kicker}</Kicker>
-              <h2 className="text-[clamp(34px,4vw,54px)] leading-[1.05]">
-                {who.headline}
-              </h2>
-            </div>
-            <p className="max-w-[380px] text-[17px] leading-[1.6] text-cream/72">
-              {who.aside}
-            </p>
-          </Reveal>
-
-          <WhoCards />
-        </div>
-      </section>
-
-      {/* ---------------------------------------------------------------- */}
       {/* How we work: the Roadmap                                          */}
       {/* ---------------------------------------------------------------- */}
       <section
         id="how-we-work"
-        className="mx-auto max-w-[1200px] scroll-mt-[70px] px-7 pb-[30px] pt-[clamp(80px,9vw,120px)]"
+        className="mx-auto max-w-[1200px] scroll-mt-[70px] px-6 pb-[30px] pt-[clamp(70px,9vw,120px)] md:px-7"
       >
         <Reveal className="mb-5 max-w-[640px]">
           <Kicker className="text-sage-bright">{roadmap.kicker}</Kicker>
@@ -304,7 +329,7 @@ export default function HomePage() {
             <Reveal
               key={phase.id}
               className={cn(
-                "grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-center gap-12 py-9",
+                "grid grid-cols-1 items-center gap-8 py-7 md:grid-cols-2 md:gap-12 md:py-9",
                 i === 0 && "mt-5",
               )}
             >
@@ -316,7 +341,7 @@ export default function HomePage() {
                 )}
               >
                 <div
-                  className="disc aspect-square w-[min(340px,100%)]"
+                  className="disc aspect-square w-[min(240px,70%)] md:w-[min(340px,100%)]"
                   style={{ boxShadow: art.ring }}
                 >
                   <Image
@@ -367,7 +392,7 @@ export default function HomePage() {
         className="mx-auto mt-[clamp(70px,8vw,110px)] max-w-[1240px] px-5"
       >
         <div
-          className="relative grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-center gap-10 overflow-visible rounded-[28px] px-[8%] py-[clamp(48px,6vw,80px)]"
+          className="relative grid grid-cols-1 items-center gap-10 overflow-visible rounded-[28px] px-6 py-[clamp(56px,6vw,80px)] sm:px-[8%] md:grid-cols-2"
           style={{
             background:
               "linear-gradient(135deg, var(--color-terra) 0%, #A8572F 55%, var(--color-gold) 130%)",
@@ -431,50 +456,54 @@ export default function HomePage() {
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/* Founders                                                          */}
+      {/* Founder note                                                      */}
       {/* ---------------------------------------------------------------- */}
       <section
-        id="founders"
-        className="pillow-lg relative z-[1] -mb-[60px] mt-[clamp(80px,9vw,120px)] scroll-mt-[70px] px-7 pb-[clamp(120px,12vw,160px)] pt-[clamp(80px,9vw,120px)] text-[#1B231B] shadow-[0_40px_90px_rgba(27,35,27,.25)]"
+        id="founder"
+        className="pillow-lg relative z-[1] -mb-[60px] mt-[clamp(80px,9vw,120px)] scroll-mt-[70px] px-6 pb-[clamp(110px,12vw,160px)] pt-[clamp(72px,9vw,120px)] text-[#1B231B] shadow-[0_40px_90px_rgba(27,35,27,.25)] md:px-7"
         style={{
           background:
             "radial-gradient(ellipse 60% 50% at 85% 10%, #FBFBF3, var(--color-cream) 70%)",
         }}
       >
-        <div className="mx-auto grid max-w-[1200px] grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-center gap-16">
-          <div className="relative">
-            <Image
-              src="/founders/founders.jpg"
-              alt={founders.photoAlt}
-              width={750}
-              height={1000}
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="block w-full rounded-[22px] shadow-[0_30px_60px_rgba(27,35,27,.2)]"
+        <div className="mx-auto grid grid-cols-1 max-w-[1040px] items-start gap-10 md:grid-cols-[auto_minmax(0,1fr)] md:gap-16">
+          <Reveal className="relative mx-auto w-[min(240px,64vw)] md:mx-0 md:mt-2 md:w-[280px]">
+            <div
+              className="absolute inset-0 translate-x-3 translate-y-3 rounded-[28px] bg-gold-bright/55"
+              aria-hidden="true"
             />
-          </div>
-          <div>
-            <Kicker className="text-sage">{founders.kicker}</Kicker>
+            <Image
+              src={site.founder.photo}
+              alt={founder.photoAlt}
+              width={360}
+              height={360}
+              sizes="280px"
+              className="relative block aspect-square w-full rounded-[28px] object-cover shadow-[0_24px_50px_rgba(27,35,27,.22)]"
+            />
+          </Reveal>
+          <Reveal>
+            <Kicker className="text-sage">{founder.kicker}</Kicker>
             <h2 className="mb-[22px] text-[clamp(34px,4vw,54px)] leading-[1.05] text-[#1B231B]">
-              {founders.headline}
+              {founder.headline}
             </h2>
-            <div className="max-w-[560px] text-[16.5px] leading-[1.7] text-[#1B231B]/85">
-              {founders.letter.map((paragraph, i) => (
+            <div className="max-w-[580px] text-[16.5px] leading-[1.7] text-[#1B231B]/85">
+              {founder.letter.map((paragraph, i) => (
                 <p
                   key={i}
-                  className={i < founders.letter.length - 1 ? "mb-3.5" : ""}
+                  className={i < founder.letter.length - 1 ? "mb-3.5" : ""}
                 >
                   <Emphasize text={paragraph} phrase={site.name} />
                 </p>
               ))}
             </div>
-            <div className="mt-[26px] flex max-w-[560px] items-end justify-between gap-5">
+            <div className="mt-[26px] flex max-w-[580px] items-end justify-between gap-5">
               <div>
-                <p className="mb-1 text-[15px]">{founders.signoff}</p>
+                <p className="mb-1 text-[15px]">{founder.signoff}</p>
                 <p className="font-display text-[30px] italic text-sage">
-                  {founders.signature}
+                  {founder.signature}
                 </p>
                 <p className="mt-1 text-[13.5px] text-[#1B231B]/60">
-                  {founders.signatureRole}
+                  {founder.signatureRole}
                 </p>
               </div>
               <Image
@@ -486,7 +515,7 @@ export default function HomePage() {
                 className="h-[104px] w-auto flex-none"
               />
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -494,23 +523,23 @@ export default function HomePage() {
       {/* Final CTA                                                         */}
       {/* ---------------------------------------------------------------- */}
       <section
-        className="relative overflow-hidden px-7 pb-[clamp(90px,11vw,150px)] pt-[clamp(140px,15vw,210px)]"
+        className="relative overflow-hidden px-6 pb-[clamp(84px,11vw,150px)] pt-[clamp(130px,15vw,210px)] md:px-7"
         style={{
           background:
             "radial-gradient(ellipse 60% 70% at 50% 100%, rgba(224,174,63,.22), transparent 65%), var(--color-ink)",
         }}
       >
         <div className="relative mx-auto max-w-[900px] text-center">
-          <div className="disc mx-auto mb-[30px] h-[180px] w-[180px] shadow-[0_0_0_1px_rgba(158,196,154,.45),0_0_110px_rgba(158,196,154,.25)]">
+          <div className="disc mx-auto mb-[30px] h-[160px] w-[160px] shadow-[0_0_0_1px_rgba(158,196,154,.45),0_0_110px_rgba(158,196,154,.25)] md:h-[180px] md:w-[180px]">
             <Image
               src="/mascot/brain-sitting.png"
               alt="Brain mascot relaxing in an armchair"
               width={129}
               height={132}
-              className="block h-[132px] w-auto"
+              className="block h-[118px] w-auto md:h-[132px]"
             />
           </div>
-          <h2 className="mb-5 text-[clamp(38px,5.4vw,74px)] leading-none">
+          <h2 className="mb-5 text-[clamp(36px,5.4vw,74px)] leading-none">
             {finalCta.headline}
             <br />
             {finalCta.headlineLine2}
@@ -518,12 +547,9 @@ export default function HomePage() {
           <p className="mx-auto mb-[34px] max-w-[540px] text-[18px] leading-[1.6] text-cream/72">
             {finalCta.body}
           </p>
-          <a
-            href={site.formUrl}
-            className="btn-gold px-[38px] py-[17px] text-[16.5px]"
-          >
+          <BookLink className="px-[38px] py-[17px] text-[16.5px]" arrow>
             {finalCta.cta}
-          </a>
+          </BookLink>
         </div>
       </section>
     </>

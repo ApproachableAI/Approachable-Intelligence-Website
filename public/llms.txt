@@ -1,34 +1,49 @@
 # Approachable Intelligence
 
-> AI integration and automation for small and medium service businesses. We help owners adopt AI without losing the human quality that made their business work. Tagline: Big Tech Energy. Small Business Soul. Based in Colorado (Denver and the Roaring Fork Valley), working locally and remotely. Founded by Ty and Jordyn.
+> Custom AI workflows, AI use policy, and team training for engineering firms, architects, and small and medium service businesses. Tagline: Big Tech Energy. Small Business Soul. Based in Colorado (Denver and the Roaring Fork Valley), working locally and remotely. Founded and led by Ty Coutts.
 
 ## What we do
 
-Approachable Intelligence is an AI integration and web development consultancy for service businesses that have outgrown their systems. We automate the busywork your customers never see (data entry, follow-ups, reminders, lead routing) and protect the human moments they feel. We also coach teams so the new tools actually get used.
+Approachable Intelligence builds AI workflows around the documents and processes a team already runs, writes the guardrails that keep them safe, and trains the people who use them. Engagements are some mix of four things:
+
+- Custom AI workflows: a task the team repeats by hand (reviewing a submittal, extracting a schedule from a report, drafting a proposal) turned into a workflow that produces the same reviewable output every time.
+- Systems that talk: one clean client record feeding the CRM, invoices, calendar, and follow-ups, built on tools the business already pays for.
+- Policy and guardrails: a short AI use policy covering approved tools, data that stays out, and who reviews the output.
+- Training: live sessions, one-on-ones, and office hours, judged by who is still using the tools ninety days later.
 
 Our process runs in three phases:
 
-- The Deep Dive (48-hour blueprint): a two-hour audit of your "digital junk drawer" to find lead leakage, manual duct tape, and invisible labor. You get a map of what to delete, automate, and protect.
-- The Build (setup and buy-in): we install the automated architecture and coach the team to adopt it, so the business runs smoother.
-- The Alliance (ongoing support): on-call partners who refine the roadmap as AI evolves.
+- The Deep Dive (48-hour blueprint): a two-hour audit of current systems to find the bottlenecks and the daily tasks worth automating.
+- The Build (setup and buy-in): we install the workflows and coach the team to adopt them.
+- The Alliance (ongoing support): an on-call partner who refines the roadmap as AI evolves.
 
 ## Who we help
 
-Small and medium service businesses dealing with operational bottlenecks, scattered data and double-entry, underused software and AI tools, and the worry that automation will make their service feel cold.
+- Engineering and architecture firms (https://approachableintelligence.ai/industries/engineers-architects): submittal pre-review against specs and drawings, load-calc extraction into equipment schedules, code-driven ventilation schedules with an independent back-check, proposals and fee letters, AI use policy, and firm-wide training. Every output is written to be checked by the licensed professional who signs it.
+- Small and medium service businesses (https://approachableintelligence.ai/industries/service-businesses): lead follow-up, one client record, scheduling and reminders, drafted invoices and proposals, and team coaching.
+
+## Case study: Maxson Engineering
+
+Maxson Engineering is an MEP (mechanical, electrical, plumbing) consulting engineering firm in Colorado. Wary of software that gets bought and abandoned, the firm sequenced the work deliberately: an AI use policy first, one firm-approved AI platform second, a three-session firm-wide training program third, and custom workflows last. The workflows turn a load calculation report into an equipment selection schedule, a room-by-room breakdown, a severity-flagged closeout report, and a design-decisions log, and populate ventilation schedules from that data. A submittal pre-review workflow is in build, with a design target of taking one review from about two hours to about twenty minutes while the engineer still checks the critical items. Full write-up: https://approachableintelligence.ai/industries/engineers-architects#case-study
 
 ## Free resources
 
 The Skills Library (https://approachableintelligence.ai/skills-library) offers three free copy-paste AI skills, no email required: the Humanizer (removes the "AI accent" from writing), Done for the Day (an end-of-day recap and resume ritual), and Save Template (turns any finished result into a reusable, named skill).
 
+The Lead Leakage Calculator (https://approachableintelligence.ai/lead-leakage-calculator) estimates the revenue lost to slow or missed lead follow-up.
+
 ## Key pages
 
 - Home: https://approachableintelligence.ai/
+- Engineers & Architects: https://approachableintelligence.ai/industries/engineers-architects
+- Service Businesses: https://approachableintelligence.ai/industries/service-businesses
 - Skills Library (free AI skills): https://approachableintelligence.ai/skills-library
-- How it works (services and process): https://approachableintelligence.ai/services
-- About the founders (Ty and Jordyn): https://approachableintelligence.ai/about
-- Resources (guides on AI for service businesses): https://approachableintelligence.ai/resources
-- Contact (start the conversation): https://approachableintelligence.ai/contact
+- How it works (process): https://approachableintelligence.ai/services
+- About Ty Coutts: https://approachableintelligence.ai/about
+- Resources: https://approachableintelligence.ai/resources
+- Contact (book a call): https://approachableintelligence.ai/contact
 
 ## Contact
 
+Book a call: https://calendly.com/tycoutts
 Email: info@approachableintelligence.ai

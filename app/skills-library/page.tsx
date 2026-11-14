@@ -66,7 +66,7 @@ export default function SkillsLibraryPage() {
             "radial-gradient(ellipse 50% 60% at 80% 30%, rgba(172,124,24,.28), transparent 60%), radial-gradient(ellipse 40% 50% at 10% 100%, rgba(80,106,79,.4), transparent 60%), var(--color-ink)",
         }}
       >
-        <div className="mx-auto grid max-w-[1200px] grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-center gap-12 px-7 pb-[60px] pt-[clamp(70px,9vw,120px)]">
+        <div className="mx-auto grid grid-cols-1 max-w-[1200px] items-center gap-10 px-6 md:grid-cols-2 md:gap-12 md:px-7 pb-[60px] pt-[clamp(70px,9vw,120px)]">
           <div>
             <p className="ai-rise-fast mb-[18px] text-[12.5px] font-semibold uppercase tracking-[.16em] text-gold-bright">
               Free &middot; no email needed
@@ -94,7 +94,7 @@ export default function SkillsLibraryPage() {
             </div>
           </div>
           <div className="grid place-items-center">
-            <div className="disc aspect-square w-[min(340px,100%)] shadow-[0_0_0_1px_rgba(224,174,63,.4),0_0_110px_rgba(224,174,63,.22)]">
+            <div className="disc aspect-square w-[min(220px,60%)] md:w-[min(340px,100%)] shadow-[0_0_0_1px_rgba(224,174,63,.4),0_0_110px_rgba(224,174,63,.22)]">
               <Image
                 src="/mascot/brain-pointing.png"
                 alt="Friendly cartoon brain pointing the way"
@@ -183,7 +183,7 @@ export default function SkillsLibraryPage() {
         className="mx-auto mt-[60px] max-w-[1240px] scroll-mt-[90px] px-5 pb-[90px]"
       >
         <div
-          className="relative grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-center gap-10 overflow-visible rounded-[28px] px-[8%] py-[clamp(48px,6vw,80px)]"
+          className="relative grid grid-cols-1 items-center gap-10 overflow-visible rounded-[28px] px-6 py-[clamp(56px,6vw,80px)] sm:px-[8%] md:grid-cols-2"
           style={{
             background:
               "linear-gradient(135deg, var(--color-terra) 0%, #A8572F 55%, var(--color-gold) 130%)",
@@ -216,6 +216,8 @@ export default function SkillsLibraryPage() {
           <div className="grid justify-items-start gap-3.5">
             <a
               href={site.formUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-cream px-8 py-4 text-[16px]"
             >
               Get the full library &mdash; free

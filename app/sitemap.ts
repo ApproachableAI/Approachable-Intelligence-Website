@@ -1,10 +1,16 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 import { posts } from "@/lib/posts";
+import { industries } from "@/lib/industries";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${site.url}/`, changeFrequency: "monthly", priority: 1 },
+    ...industries.map((i) => ({
+      url: `${site.url}/industries/${i.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    })),
     {
       url: `${site.url}/skills-library`,
       changeFrequency: "monthly",

@@ -3,7 +3,7 @@
 // on touch devices (pointer: coarse), so the push/brighten effect still happens without a mouse.
 (function () {
   if (customElements.get('brain-field')) return;
-  const THREE_URL = 'https://unpkg.com/three@0.160.0/build/three.module.js';
+  const THREE_URL = '/vendor/three.module.min.js';
   class BrainField extends HTMLElement {
     connectedCallback() {
       this.attachShadow({ mode: 'open' });

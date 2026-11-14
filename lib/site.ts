@@ -11,30 +11,58 @@ export const site = {
   // Production domain. Swap if the live domain changes.
   url: "https://approachableintelligence.ai",
   description:
-    "Approachable Intelligence helps small and medium service businesses adopt AI and automation without losing the human touch that made them work. Based in Colorado.",
+    "Approachable Intelligence builds custom AI workflows, writes the guardrails, and trains the team for engineering firms, architects, and service businesses. Based in Colorado, led by founder Ty Coutts.",
   email: "info@approachableintelligence.ai",
-  // The primary CTA points here, the existing intake form.
+  // Every "book a call" button on the site points here.
+  bookingUrl: "https://calendly.com/tycoutts",
+  // Name + email capture for the full Skills Library. Used only on /skills-library.
   formUrl: "https://api.leadconnectorhq.com/widget/form/3ukPBytwlePhvbJz1Jok",
-  founders: ["Ty", "Jordyn"],
+  founder: { name: "Ty Coutts", firstName: "Ty", photo: "/founders/ty.jpg" },
   serviceAreas: ["Denver", "Roaring Fork Valley", "Colorado"],
   sameAs: [] as string[], // add social profile URLs when ready
 } as const;
 
 export type NavLink = { href: string; label: string };
 
-// Primary navigation, in the order the design shows it.
+// Primary navigation. The first two are the client-type tabs.
 export const nav: NavLink[] = [
-  { href: "/#demo", label: "See it work" },
-  { href: "/#how-we-work", label: "How We Work" },
-  { href: "/#who", label: "Who It’s For" },
-  { href: "/skills-library", label: "Skills Library" },
-  { href: "/#founders", label: "Founders" },
-];
-
-// Footer navigation.
-export const footerNav: NavLink[] = [
+  { href: "/industries/engineers-architects", label: "Engineers & Architects" },
+  { href: "/industries/service-businesses", label: "Service Businesses" },
   { href: "/#how-we-work", label: "How We Work" },
   { href: "/skills-library", label: "Skills Library" },
+  { href: "/about", label: "About" },
 ];
 
-export const ctaLabel = "Start the Conversation";
+// Footer navigation, grouped.
+export const footerNav: { heading: string; links: NavLink[] }[] = [
+  {
+    heading: "Who we help",
+    links: [
+      { href: "/industries/engineers-architects", label: "Engineers & Architects" },
+      { href: "/industries/service-businesses", label: "Service Businesses" },
+      {
+        href: "/industries/engineers-architects#case-study",
+        label: "Maxson Engineering case study",
+      },
+    ],
+  },
+  {
+    heading: "Explore",
+    links: [
+      { href: "/#what-we-do", label: "What We Do" },
+      { href: "/#how-we-work", label: "How We Work" },
+      { href: "/skills-library", label: "Skills Library" },
+      { href: "/lead-leakage-calculator", label: "Lead Leakage Calculator" },
+      { href: "/resources", label: "Resources" },
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
+      { href: "/about", label: "About" },
+      { href: "/contact", label: "Contact" },
+    ],
+  },
+];
+
+export const ctaLabel = "Book a Call";

@@ -28,7 +28,7 @@ export default function NotFound() {
           <Link href="/" className="btn-gold px-7 py-3.5 text-[15.5px]">
             Back home
           </Link>
-          <Link href="/#how-we-work" className="btn-outline px-7 py-3.5 text-[15.5px]">
+          <Link href="/#what-we-do" className="btn-outline px-7 py-3.5 text-[15.5px]">
             See how it works
           </Link>
         </div>

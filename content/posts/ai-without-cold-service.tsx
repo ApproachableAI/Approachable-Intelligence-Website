@@ -9,7 +9,7 @@ export const meta: PostMeta = {
     "The fear is real: automate the wrong thing and your business starts to feel like everyone else's. Here is how to get the time-back without losing the warmth.",
   datePublished: "2026-06-10",
   dateUpdated: "2026-06-10",
-  authors: ["Ty", "Jordyn"],
+  authors: ["Ty"],
   tags: ["AI for service businesses", "Automation", "Small business"],
   readingMinutes: 5,
 };
