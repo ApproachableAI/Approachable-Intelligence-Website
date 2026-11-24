@@ -473,12 +473,12 @@ export default function HomePage() {
               aria-hidden="true"
             />
             <Image
-              src={site.founder.photo}
+              src="/founders/ty-lake.jpg"
               alt={founder.photoAlt}
-              width={360}
-              height={360}
-              sizes="280px"
-              className="relative block aspect-square w-full rounded-[28px] object-cover shadow-[0_24px_50px_rgba(27,35,27,.22)]"
+              width={596}
+              height={720}
+              sizes="(min-width: 768px) 280px, 64vw"
+              className="relative block h-auto w-full rounded-[28px] object-cover shadow-[0_24px_50px_rgba(27,35,27,.22)]"
             />
           </Reveal>
           <Reveal>

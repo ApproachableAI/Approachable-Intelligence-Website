@@ -254,7 +254,7 @@ export const home = {
   founder: {
     kicker: "From the founder",
     headline: "The human part is the point.",
-    photoAlt: "Ty Coutts, founder of Approachable Intelligence, smiling in front of a mountain valley",
+    photoAlt: "Ty Coutts, founder of Approachable Intelligence, kneeling beside his dog on a rocky lakeshore",
     letter: [
       "If you’re here, you probably built something that matters. A firm with a reputation, where the work carries your name and customers are treated like people.",
       "The pressure right now is to bolt AI onto everything. I have watched that go badly: tools bought, demoed once, and forgotten. The firms that get real value do it in a different order. They set the rules, teach their people, and only then build.",
