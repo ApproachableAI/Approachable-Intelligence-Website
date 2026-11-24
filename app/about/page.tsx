@@ -76,13 +76,13 @@ export default function AboutPage() {
               aria-hidden="true"
             />
             <Image
-              src={founder.photo}
-              alt="Ty Coutts, founder of Approachable Intelligence, smiling in front of a mountain valley"
-              width={360}
-              height={360}
+              src="/founders/ty-lake.jpg"
+              alt="Ty Coutts, founder of Approachable Intelligence, kneeling beside his dog on a rocky lakeshore"
+              width={596}
+              height={720}
               priority
-              sizes="340px"
-              className="relative block aspect-square w-full rounded-[32px] object-cover"
+              sizes="(min-width: 768px) 340px, 70vw"
+              className="relative block h-auto w-full rounded-[32px]"
             />
           </div>
         </div>
