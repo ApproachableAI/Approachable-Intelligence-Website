@@ -63,7 +63,7 @@ export default function ContactPage() {
           <div className="ai-rise ai-delay-2 rounded-[24px] border border-cream/14 bg-ink-2 p-6 sm:p-8">
             <div className="flex items-center gap-4">
               <Image
-                src={site.founder.photo}
+                src="/founders/ty-lake-face.jpg"
                 alt="Ty Coutts"
                 width={72}
                 height={72}
