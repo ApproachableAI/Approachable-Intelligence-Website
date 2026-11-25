@@ -17,7 +17,7 @@ export const site = {
   bookingUrl: "https://calendly.com/tycoutts",
   // Name + email capture for the full Skills Library. Used only on /skills-library.
   formUrl: "https://api.leadconnectorhq.com/widget/form/3ukPBytwlePhvbJz1Jok",
-  founder: { name: "Ty Coutts", firstName: "Ty", photo: "/founders/ty.jpg" },
+  founder: { name: "Ty Coutts", firstName: "Ty", photo: "/founders/ty-lake-face.jpg" },
   serviceAreas: ["Denver", "Roaring Fork Valley", "Colorado"],
   sameAs: [] as string[], // add social profile URLs when ready
 } as const;
@@ -42,7 +42,7 @@ export const footerNav: { heading: string; links: NavLink[] }[] = [
       { href: "/industries/service-businesses", label: "Service Businesses" },
       {
         href: "/industries/engineers-architects#case-study",
-        label: "Maxson Engineering case study",
+        label: "MEP firm case study",
       },
     ],
   },

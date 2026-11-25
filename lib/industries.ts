@@ -75,13 +75,13 @@ export const industries: Industry[] = [
     theme: "blueprint",
     metaTitle: "AI Workflows for Engineers & Architects",
     metaDescription:
-      "Custom AI workflows for engineering and architecture firms: submittal pre-review, load-calc extraction, code-driven schedules, proposals, AI policy, and training. See the Maxson Engineering case study.",
+      "Custom AI workflows for engineering and architecture firms: submittal pre-review, load-calc extraction, code-driven schedules, proposals, AI policy, and training. See the case study from a local MEP firm.",
     hero: {
       kicker: "For engineering & architecture firms",
       headline: "AI that works like a sharp junior engineer.",
       headlineEmphasis: "You keep the stamp.",
       body: "We build workflows that read the reports, specs, and submittals your team reads by hand, pull out what matters, and flag what looks wrong. Every output is written to be checked by the person who signs it.",
-      secondaryCta: { label: "Read the Maxson case study", href: "#case-study" },
+      secondaryCta: { label: "Read the case study", href: "#case-study" },
     },
     teaser: {
       summary:
@@ -162,12 +162,12 @@ export const industries: Industry[] = [
       ],
     },
     caseStudy: {
-      client: "Maxson Engineering",
+      client: "A local MEP firm",
       clientDescriptor: "MEP consulting engineers · Colorado",
       headline: "A firm that had been burned by shelfware, and the order that fixed it.",
       situation: [
-        "Maxson Engineering designs mechanical, electrical, and plumbing systems. Like most firms their size, they had watched software get bought, demoed, and quietly abandoned. Leadership’s first question was whether anyone would still be using this in six months.",
-        "So the engagement took a different shape. Instead of a report delivered and left behind, Approachable Intelligence works alongside the firm as an embedded partner, with a weekly check-in and a domain expert inside Maxson who owns each workflow.",
+        "This firm designs mechanical, electrical, and plumbing systems. Like most firms their size, they had watched software get bought, demoed, and quietly abandoned. Leadership’s first question was whether anyone would still be using this in six months.",
+        "So the engagement took a different shape. Instead of a report delivered and left behind, Approachable Intelligence works alongside the firm as an embedded partner, with a weekly check-in and a domain expert inside the firm who owns each workflow.",
       ],
       sequence: [
         {

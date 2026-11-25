@@ -144,7 +144,7 @@ export type Founder = {
 export const founder: Founder = {
   name: "Ty Coutts",
   role: "Founder",
-  photo: "/founders/ty.jpg",
+  photo: "/founders/ty-lake-face.jpg",
   credentials: "AI integration, workflow design, and team training",
   bio: [
     "Ty builds the systems and teaches the people who use them. He spends his weeks inside client firms, sitting with the engineers, office managers, and owners who do the work, then turning what they do by hand into workflows they can trust.",
@@ -205,9 +205,9 @@ export const home = {
     ],
   },
   caseStudy: {
-    kicker: "Case study · Maxson Engineering",
+    kicker: "Case study · A local MEP firm",
     headline: "An engineering firm that refused to buy more shelfware.",
-    body: "Maxson Engineering is an MEP consulting firm in Colorado. They had watched AI tools get bought, demoed, and abandoned. So we started with policy and training, then built workflows their engineers can check line by line.",
+    body: "The client is an MEP consulting firm in Colorado. They had watched AI tools get bought, demoed, and abandoned. So we started with policy and training, then built workflows their engineers can check line by line.",
     cta: "Read the case study",
     statLabel: "The design target for one submittal review",
     statNote: "The engineer still checks the critical items. The seal never moves.",
