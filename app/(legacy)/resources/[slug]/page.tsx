@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { site } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 import { posts, getPost, formatDate } from "@/lib/posts";
 import { Container, Section } from "@/components/ui";
@@ -87,7 +88,7 @@ export default async function PostPage({
                 <FounderAvatar
                   key={name}
                   name={name}
-                  src={`/founders/${name.toLowerCase()}.jpg`}
+                  src={site.founder.photo}
                   size={40}
                   index={i}
                 />

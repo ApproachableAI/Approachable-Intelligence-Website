@@ -27,7 +27,7 @@ npm run lint    # eslint
 app/
   layout.tsx          Root layout: fonts, global metadata, header, footer, Organization + LocalBusiness schema
   page.tsx            Home: hero with the 3D brain, "things we have built" strip, what we do,
-                      Maxson case study band, who-we-help tabs, live sync demo, the Roadmap,
+                      MEP firm case study band, who-we-help tabs, live sync demo, the Roadmap,
                       Skills Library teaser, founder note, final CTA
   industries/[slug]/  Client-type pages (Engineers & Architects, Service Businesses), driven by lib/industries.ts
   about/              About Ty
@@ -41,7 +41,7 @@ app/
 lib/
   site.ts             Site-wide config: name, url, nav, footer links, booking URL, email, service areas
   content.ts          Editable copy: home page sections, the three phases, FAQs, founder bio
-  industries.ts       Client-type pages, including the Maxson Engineering case study
+  industries.ts       Client-type pages, including the MEP firm case study
   skills.ts           The three free skills
   posts.ts, schema.ts, seo.ts
 components/           Reusable UI (header, footer, demos, scroll reveal, etc.)
@@ -58,7 +58,7 @@ Most copy lives in data files, no component editing needed:
 
 - **`lib/site.ts`** — business name, domain, navigation, footer links, email, and `bookingUrl`. Every "Book a Call" button on the site reads `bookingUrl` (currently Calendly), so changing it there changes it everywhere.
 - **`lib/content.ts`** — every home page section (`home`), the three process phases, FAQ lists, and the founder bio.
-- **`lib/industries.ts`** — the client-type pages. Each entry holds its hero, the "what we build" cards, principles, FAQs, and an optional `caseStudy`. The Maxson Engineering case study lives in the `engineers-architects` entry.
+- **`lib/industries.ts`** — the client-type pages. Each entry holds its hero, the "what we build" cards, principles, FAQs, and an optional `caseStudy`. The MEP firm case study lives in the `engineers-architects` entry.
 - **`lib/skills.ts`** — the three free skills on `/skills-library`.
 
 ### Adding a client type
